@@ -2,13 +2,13 @@
     <div class="row">
     <h2 class=" card-title m-2 col"> Sobre mi </h2> 
     
-    <button class="bi bi-pencil-square" viewbox="0 0 16 16" (click)="editarTexto()"> 
-     </button> 
-    </div>
     
-     <p class="card-text m-2"> {{acercade.Texto}} </p> 
+     <p class="card-text m-2"> {{acercade.texto}} </p> 
+  
+     <button class="bi bi-pencil-square" viewbox="0 0 16 16" (click)="editarTexto()"> 
+     </button> 
 
-     <div class="card-mt4" *ngIf="FormVisibilty">
+        <div class="card-mt4" *ngIf="FormVisibilty">
         <div class="card-body">
             <div class="card-title">
               Editar texto
@@ -16,7 +16,7 @@
             <form (ngSubmit)="onSubmit(acercade)">
               <div class="form-group">
                 <input type="text"
-                [(ngModel)]="acercade.Texto"
+                [(ngModel)]="acercade.texto"
                 name="texto"
                 placeholder="Editar texto"
                 class="form-control">
@@ -26,7 +26,8 @@
               </button>
             </form>
           </div>
-        </div>
+    </div>     
+  </div>
     </section>
         
          

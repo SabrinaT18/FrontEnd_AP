@@ -16,6 +16,7 @@ import { ExperienciaService } from './servicios/experiencia.service';
 import { LoginComponent } from './componentes/login/login/login.component';
 import { AutenticacionService } from './servicios/autenticacion.service';
 import { FormsModule } from '@angular/forms';
+import { InterceptorService } from './servicios/interceptor.service';
 
 
 @NgModule({
@@ -41,9 +42,9 @@ import { FormsModule } from '@angular/forms';
     EducacionService,
     EncabezadoService,
     ExperienciaService,
-    AutenticacionService  
+    AutenticacionService,
+    InterceptorService 
   ],
-
 
   bootstrap: [AppComponent]
 })

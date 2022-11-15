@@ -1,9 +1,10 @@
 export class Acercade {
-    idA?: number;
-    Texto: String;
-  
-    constructor (Texto: String ) {
-       this.Texto = Texto;
-         
-    }
+  idA?: number;
+  texto: String;
+      
+  constructor (texto: String) {
+     
+    this.texto = texto;
+       
+  }
 }
