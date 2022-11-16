@@ -20,6 +20,9 @@ import { InterceptorService } from './servicios/interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProyectosComponent } from './componentes/proyectos/proyectos.component';
 import { SkillsComponent } from './componentes/skills/skills.component';
+import { InfoContactComponent } from './componentes/info-contact/info-contact.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
+
 
 
 @NgModule({
@@ -32,7 +35,8 @@ import { SkillsComponent } from './componentes/skills/skills.component';
     PortfolioComponent,
     LoginComponent,
     ProyectosComponent,
-    SkillsComponent
+    SkillsComponent,
+    InfoContactComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +45,7 @@ import { SkillsComponent } from './componentes/skills/skills.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    NgCircleProgressModule.forRoot({}),
   ],
 
   providers: [

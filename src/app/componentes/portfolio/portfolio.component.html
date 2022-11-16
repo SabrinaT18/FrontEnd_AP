@@ -1,7 +1,57 @@
 <app-encabezado></app-encabezado>
 
+<!----
+<div class="card mat-card">
+    <div class="card-body">
+    
+    <div *ngFor="let persona of persona" class="m-3" id="datosPersonales">
+     <div id="info-img">
+     <img class="profile-image" src={{persona.Img}}>
+     <a type="button" class=""(click)="editarTexto()">
+    <a><i class="bi-pencil bi-solid"></i></a>
+     </a>   
+    </div>
+    
+    <div id="info data" >
+    <h1> {{persona.nombre}} {{persona.apellido}} </h1>
+    <div id="info-company"> {{persona.company}} </div>
+    
+    <a click="setImg()" svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewbox="0 0 16 16">
+    </a>  
+    
+    <div *ngIf="FormVisibility">
+    <form (ngSubmit)="onSubmit(persona)">
+    <p>Imagen de perfil</p>
+    <input type="text"  [(ngModel)]="persona.Img"
+    name="imagen" placeholder="URL imagen de perfil"
+    class="form-control">
+     
+    <button type="submit" class="btn m-1 btn-primary">Guardar </button>
+    <button type="close" class="btn m-1 btn-primary">Cerrar  </button>
+    </form>                  
+    </div>
+      
+    Información de contacto       
+    <div id="info-contact">       
+     <app-info-contact> </app-info-contact>  
+      </div>
+
+    </div>
+      ---->
 <app-acercade></app-acercade>
 
 <app-educacion></app-educacion>
 
 <app-experiencia></app-experiencia>
+
+<app-skills></app-skills>
+
+<app-proyectos></app-proyectos>
+
+<footer>
+    <div class="shadow bg-dark text-light p-2 text-center" style="font-size: 12px;">
+        <span> Proyecto integrador Portfolio Web Full Stack </span>
+        <span>Argentina Programa #Yo Programo 2022</span>
+        <span> Sabrina Tatiana Santoro </span>
+    </div>
+</footer>

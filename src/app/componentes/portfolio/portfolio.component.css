@@ -1,0 +1,41 @@
+.mat-card {
+    border-radius: 15px;
+    margin: 20px 10px;
+    padding: 10px;
+    border-color: gray;
+    }
+    .mat-card#first-card {
+        padding: 0;
+    }  
+
+
+
+    .profile-image { 
+        border-radius: 80%;
+        width: 152px;
+        height: 152px;
+        margin-top: -110px;
+        z-index: 1;
+        }
+    
+      
+    div#info-actions {
+        display: flex;
+    }
+    div#info-actions button {
+    margin-right: 8px;
+    }
+    div#info-contact span {
+        font-size: 1rem;
+        font-weight: 400;
+    }
+    div#info-contact span a{
+        color:rgb(97, 21, 168);
+        touch-action: manipulation;
+        text-decoration: none;
+    }
+    div#info-company {
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 1.25;
+    }
