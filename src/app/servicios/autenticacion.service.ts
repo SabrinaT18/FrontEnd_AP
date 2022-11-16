@@ -14,7 +14,12 @@ export class AutenticacionService {
 
  URL = 'https://portfoliosantorosabrina.herokuapp.com/auth/';
 
- constructor(private httpClient: HttpClient) { }
+
+ currentUserSubject: BehaviorSubject<any>;
+  constructor(private httpClient:HttpClient) {
+    console.log("El servicio de autenticación está corriendo");
+    this.currentUserSubject= new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem('currentUser')||'{}'))
+  }
 
  public nuevo(nuevoUsuario: NuevoUsuario): Observable<any>{
    return this.httpClient.post<any>(this.URL + 'nuevo', nuevoUsuario);
@@ -24,5 +29,19 @@ export class AutenticacionService {
    return this.httpClient.post<JwtDto>(this.URL + 'login', loginUsuario)
  }
   
+
+     
+get UsuarioAutenticado (){
+  return this.currentUserSubject.value;
+}
+
+public logout(){
+  sessionStorage.removeItem('currentUser');
+}
+
+public isUserLogged():boolean{
+  return sessionStorage.getItem('currentUser')!== null;
+}
+
 }
  

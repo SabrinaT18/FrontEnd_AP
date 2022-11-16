@@ -11,97 +11,38 @@ import { TokenService } from 'src/app/servicios/token.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  isLogged = false;
-  isLogginFail = false;
   loginUsuario!: LoginUsuario;
   nombreUsuario!: string;
-  password! : string;
-  roles: string[] = [];
+  password!: string;
   errMsj!: string;
+  isLoginFail=false;
 
-  constructor(private tokenService: TokenService, private authService: AutenticacionService, private router: Router) { }
+  constructor(private tokenService: TokenService, 
+    private authService: AutenticacionService, 
+    private router: Router) { }
 
   ngOnInit(): void {
-    if(this.tokenService.getToken()){
-      this.isLogged = true;
-      this.isLogginFail = false;
-      this.roles = this.tokenService.getAuthorities();
-    }
+  
   }
 
-  onLogin(): void{
-    this.loginUsuario = new LoginUsuario(this.nombreUsuario, this.password); 
-    this.authService.login(this.loginUsuario).subscribe(data =>{
-        this.isLogged = true;
-        this.isLogginFail = false;
+  onLogin(): void {
+    this.loginUsuario = new LoginUsuario(this.nombreUsuario, this.password);
+    this.authService.login(this.loginUsuario).subscribe(
+      data => {
         this.tokenService.setToken(data.token);
-        this.tokenService.setUserName(data.nombreUsuario);
-        this.tokenService.setAuthorities(data.authorities);
-        this.roles = data.authorities;
-        this.router.navigate(['/portfolio'])
-      }, err =>{
-        this.isLogged = false;
-        this.isLogginFail = true;
+        this.router.navigate(['/portfolio']);
+        console.log(data)  
+      }, 
+      err => {
         this.errMsj = err.error.mensaje;
-        console.log(this.errMsj);
-        
-      })
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* form: FormGroup;
-
-  constructor
-    (private formBuilder: FormBuilder,
-      private authService: AutenticacionService,
-      private router: Router,) {
-      this.form = this.formBuilder.group({
-        nombreUsuario: ['', [Validators.required, Validators.minLength(4)]],
-        password: ['', [Validators.required, Validators.minLength(5)]],
-      })
-  }
-
-
-  ngOnInit() {}
-
-  get nombreUsuario() {
-    return this.form.get('nombreUsuario')
-  }
-
-  get password() {
-    return this.form.get('password');
-  }
-
-  onLogin(event: Event) {
-    event.preventDefault;
-    this.authService.login(this.form.value).subscribe(data => {
-      console.log("DATA:" +JSON.stringify(data));
-     this.router.navigate(['/portfolio']);
-    });
-  }
- */
+        this.isLoginFail = true;
+      }
+    );       
+}
 }
 
 
- 
+
+
+
+

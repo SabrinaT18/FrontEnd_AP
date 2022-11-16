@@ -17,6 +17,9 @@ import { LoginComponent } from './componentes/login/login/login.component';
 import { AutenticacionService } from './servicios/autenticacion.service';
 import { FormsModule } from '@angular/forms';
 import { InterceptorService } from './servicios/interceptor.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProyectosComponent } from './componentes/proyectos/proyectos.component';
+import { SkillsComponent } from './componentes/skills/skills.component';
 
 
 @NgModule({
@@ -27,7 +30,9 @@ import { InterceptorService } from './servicios/interceptor.service';
     ExperienciaComponent,
     EncabezadoComponent,
     PortfolioComponent,
-    LoginComponent
+    LoginComponent,
+    ProyectosComponent,
+    SkillsComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +40,7 @@ import { InterceptorService } from './servicios/interceptor.service';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
   ],
 
   providers: [
@@ -43,9 +49,9 @@ import { InterceptorService } from './servicios/interceptor.service';
     EncabezadoService,
     ExperienciaService,
     AutenticacionService,
-    InterceptorService 
-  ],
-
-  bootstrap: [AppComponent]
-})
+    InterceptorService, 
+      {provide: HTTP_INTERCEPTORS, useClass:InterceptorService, multi:true}
+    ],
+    bootstrap: [AppComponent]
+  })
 export class AppModule { }

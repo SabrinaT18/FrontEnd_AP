@@ -11,44 +11,44 @@ import { EncabezadoService } from 'src/app/servicios/encabezado.service';
   styleUrls: ['./encabezado.component.css']
 })
 export class EncabezadoComponent implements OnInit {
-  encabezado: Encabezado = new Encabezado ("", "", "","");
-  FormVisibilty : boolean = false;
-  
-  constructor(public encabezadoService: EncabezadoService ) { }
+  encabezado: Encabezado []=[];
+  FormVisibilty: boolean = false;
+
+  constructor(public encabezadoService: EncabezadoService) { }
 
 
   ngOnInit(): void {
-   this.getEncabezado()
-   console.log(this.encabezado) 
+  this.encabezadoService.getEncabezado()
   }
-       
- public getEncabezado (): void {
- this.encabezadoService.getEncabezado().subscribe({
-     next: (Response: Encabezado ) => {
-     this.encabezado= Response;
-    },
-    error: (error: HttpErrorResponse)=> {
-      alert (error.message)
-    }
-  })}
 
+   public getEncabezado(): void {
+    this.encabezadoService.getEncabezado().subscribe({
+      next: (Response: Encabezado[]) => {
+        this.encabezado = Response;
+        console.log(this.encabezado)
+      },
+      error: (error: HttpErrorResponse) => {
+        alert(error.message)
+      }
+    })
+  }
+      
+  editarTexto() {
+    console.log("funciona")
+    this.FormVisibilty = true;
+  }
 
- editarTexto (){
- console.log("funciona")
-this.FormVisibilty=true;
-        }
-     
-onSubmit (encabezado: Encabezado) : void {
-       this.FormVisibilty= false; 
-       document.getElementById ('texto')?.click ();
-     this.encabezadoService.editEncabezado(encabezado).subscribe ({
-       next: (Response: Encabezado) => {
-         console.log(Response);
-         this.getEncabezado()
-       }, error: (error: HttpErrorResponse) => {
-         alert (error.message)
-       }
-     }) 
-     }
-     }
-  
+  onSubmit(encabezado: Encabezado): void {
+    this.FormVisibilty = false;
+    document.getElementById('texto')?.click();
+    this.encabezadoService.editEncabezado(encabezado).subscribe({
+      next: (Response: Encabezado) => {
+        console.log(Response);
+        this.getEncabezado()
+      }, error: (error: HttpErrorResponse) => {
+        alert(error.message)
+      }
+    })
+  }
+}
+

@@ -1,4 +1,7 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Persona } from 'src/app/models/Persona';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-portfolio',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PortfolioComponent implements OnInit {
 
-  constructor() { }
+constructor(
+) { }
 
-  ngOnInit(): void {
-  }
+ngOnInit(): void {
+
+}
 
 }

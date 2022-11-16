@@ -1,10 +1,11 @@
 export class Acercade {
   idA?: number;
-  texto: String;
+  acercade: string;
+  texto: string;
       
-  constructor (texto: String) {
-     
+  constructor (texto: string, acercade: string) {
+    this.acercade = acercade;
     this.texto = texto;
-       
+    
   }
 }

@@ -1,51 +1,47 @@
-
 <div class="toolbar" role="banner">
-    <!---   banner --->
-    <a aria-label="Argentina Programa"
-      href="https://www.argentina.gob.ar/produccion/transformacion-digital-y-economia-del-conocimiento/argentina-programa"
-      title="Ir a Argentina Programa">
-      <img class="logo-AR" src="assets\Logo argpr.jpg">
+  <!---   banner --->
+  <a aria-label="Argentina Programa"
+    href="https://www.argentina.gob.ar/produccion/transformacion-digital-y-economia-del-conocimiento/argentina-programa"
+    title="Ir a Argentina Programa">
+    <img class="logo-AR" src="assets\Logo argpr.jpg">
+  </a>
+
+  <div *ngFor="let enc of encabezado">
+    <a aria-label="Instagram" href={{enc.Instagram}} title="Instagram">
+      <img class="instagram-logo" src="assets/Logo-ARG PROGRAMA.png">
     </a>
-  
-  
-    <input [(ngModel)]="encabezado">
-    <a aria-label="Instagram" href={{encabezado.Instagram}} title="Instagram">
-        <img class="instagram-logo" src="assets\instagram logo.png">
-    </a>
-  
-    <a aria-label="Facebook" href={{encabezado.Facebook}} title="Facebook">
+    <a aria-label="Facebook" href={{enc.Facebook}} title="Facebook">
       <img class="facebook-logo" src="assets\facebook-logo.png">
     </a>
-  
-    <a aria-label="Linkedin" href={{encabezado.Linkedin}} title="Linkedin">
+
+    <a aria-label="Linkedin" href={{enc.Linkedin}} title="Linkedin">
       <img class="linkedin-logo" src="assets\Linkedin logo.jpg">
     </a>
-  </div>
-  
-  
-  <div class="card mat-card" id="first-card">
-    <div id="profile-background">
-      <img src={{encabezado.backImage}}>
-    </div>
-  
-    <div id="info" style="padding: 16px">
-    </div>
-    <button class="bi bi-pencil-square" viewbox="0 0 16 16" (click)="editarTexto()">
-    </button>
-  
-    <div class="card mt-4" *ngIf="FormVisibilty">
-      <div class="card-body">
-        <form (ngsubmit)="onSubmit(encabezado)">
-  
-          <div class="form-group">
-            <input type="text" name="texto" [(ngModel)]="encabezado.Instagram" [(ngModel)]="encabezado.Facebook"
-              [(ngModel)]="encabezado.Linkedin" [(ngModel)]="encabezado.backImage" placeholder="editar"
-              class=" form-control">
+
+    <div class="card mat-card" id="first-card">
+      <div id="profile-background">
+        <img src={{enc.backImage}}>
+
+        <div id="info" style="padding: 16px">
+          <button class="bi bi-pencil-square" viewbox="0 0 16 16" (click)="editarTexto()">
+          </button>
+
+          <div class="card mt-4" *ngIf="FormVisibilty">
+            <div class="card-body">
+              <form (ngsubmit)="onSubmit(enc)">
+
+                <div class="form-group">
+                  <input type="text" name="texto" [(ngModel)]="enc.Instagram" [(ngModel)]="enc.Facebook"
+                    [(ngModel)]="enc.Linkedin" [(ngModel)]="enc.backImage" placeholder="editar"
+                    class=" form-control">
+                </div>
+
+                <button class="btn btn-primary mt-2" type="OnSubmit"> Guardar </button>
+              </form>
+            </div>
           </div>
-  
-          <button class="btn btn-primary mt-2" type="OnSubmit"> Guardar </button>
-        </form>
+        </div>
       </div>
     </div>
-  
+
   </div>
