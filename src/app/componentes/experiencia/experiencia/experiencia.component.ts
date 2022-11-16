@@ -36,10 +36,6 @@ export class ExperienciaComponent implements OnInit {
   public onOpenModal(mode:String, experiencia?: experiencia_laboral):void{
     const container=document.getElementById('main-container');
     const button=document.createElement('button');
-   /*  if(!this.tokenService.IsAdmin()){
-      alert("Sólo los administradores pueden editar")
-    }else{ */
-      button.style.display='none';
       button.setAttribute('data-toggle','modal');
       if(mode==='add'){
         button.setAttribute('data-target','#addExperienciaModal');
@@ -53,7 +49,6 @@ export class ExperienciaComponent implements OnInit {
       container?.appendChild(button); 
       button.click();
     }
-    /*   } */
 
   public onAddExperiencia(addForm: NgForm):void{
     document.getElementById('add-experiencia-form')?.click();

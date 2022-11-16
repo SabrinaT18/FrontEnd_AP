@@ -1,9 +1,11 @@
-.mat-card {
+#edu{
     border-radius: 15px;
     margin: 20px 10px;
-    padding: 10px;
     border-color: gray;
-    }
-    .mat-card#first-card {
-        padding: 0;
-    }  
+}
+
+.p{
+  font-size: 12px;
+ }
+        
+    

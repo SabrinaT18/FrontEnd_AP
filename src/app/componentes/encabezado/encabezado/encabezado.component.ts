@@ -18,7 +18,8 @@ export class EncabezadoComponent implements OnInit {
 
 
   ngOnInit(): void {
-  this.encabezadoService.getEncabezado()
+  this.getEncabezado()
+  console.log(this.encabezado)
   }
 
    public getEncabezado(): void {

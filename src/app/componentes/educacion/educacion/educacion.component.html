@@ -1,4 +1,4 @@
-<section class="card mat-card">
+<section class="card mat-card" id="edu">
 
     <div class="card titles">
         <h2>Educación</h2>
@@ -16,7 +16,7 @@
                 <h5> {{edu.titulo}} </h5>
                 <h6> {{edu.schoolName}} </h6>
                 <p> {{edu.tipo_estudio}}</p>
-                <p><time> {{edu.fechaInicio}} </time> -<time> {{edu.fechaFin}} </time> </p>
+                <p><time> {{edu.fechaInicio | date }} </time> -<time> {{edu.fechaFin| date }} </time> </p>
                 <p> {{edu.promedio}}</p>
 
                 <div class="col-2">

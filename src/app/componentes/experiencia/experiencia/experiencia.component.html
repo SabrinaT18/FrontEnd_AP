@@ -14,9 +14,11 @@
             *ngFor="let experiencia of experiencias">
             <li class="list-group-item w-100 ">
                 <div class="row d-flex align-items-center justify-content-center">
+                    
                     <h3>{{experiencia.descripcion}}</h3>
+
                     <p> {{experiencia.nombreEmpresa}}</p>
-                    <p>{{experiencia.fechaInicio}} - {{experiencia.fechaFin}}</p>
+                    <p>{{experiencia.fechaInicio | date }} - {{experiencia.fechaFin | date }}</p>
                     <p> {{experiencia.tipo_empleo}}</p>
                     <p> {{experiencia.esTrabajoActual}}</p>
 
@@ -39,7 +41,7 @@
 
 </section>
 
-<!-- Modal añadir experiencia
+<!-- Modal añadir experiencia-->
 <div class="modal fade" 
 id="addExperienciaModal" 
 tabindex="-1" 
@@ -56,13 +58,14 @@ aria-hidden="true"
                     <span aria-hidden="true"> </span>
                 </button>
             </div>
+
             <div class="modal-body">
                 <form #addForm="ngForm" (ngSubmit)="onAddExperiencia(addForm)">
 
                         <div class="form-group">
-                            <label for="tituloExp">Titulo</label>
-                            <input type="text" ngModel name="tituloExp" class="form-control" 
-                                aria-describedby="Titulo" placeholder="Titulo" required/>
+                            <label for="descripcion">Titulo</label>
+                            <input type="text" ngModel name="descripcion" class="form-control" 
+                                aria-describedby="descripcion" placeholder="descripcion" required/>
                         </div>
                         <input type="hidden" ngModel name="idExp" class="form-control" placeholder=""/>
                         <div class="form-group">
@@ -97,9 +100,9 @@ aria-hidden="true"
 
 </div>
 
--->
 
-<!--editar modal
+
+<!--editar modal-->
 
 <div 
 data-tonggle="modal"
@@ -116,7 +119,7 @@ aria-hidden="true"
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editExperienciaModalLabel">Editar Experiencia
-                    {{editarExperiencia?.tituloExp}}
+                    {{editarExperiencia?.descripcion}}
                 </h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"> </span>
@@ -127,23 +130,23 @@ aria-hidden="true"
 
                         <div class="form-group">
                             <label for="tituloExp">Titulo</label>
-                            <input type="text" ngModel="{{ editarExperiencia?.tituloExp }}" name="tituloExp" class="form-control" id="tituloExp"
+                            <input type="text" ngModel="{{ editarExperiencia?.descripcion }}" name="tituloExp" class="form-control" id="tituloExp"
                             aria-describedby="Titulo" placeholder="Titulo"/>
                         </div>
                         <input type="hidden" ngModel="{{ editarExperiencia?.idExp }}" name="idExp" class="form-control" id="idExp" placeholder=""/>
                         <div class="form-group">
-                            <label for="date">Fecha</label>
-                            <input type="number" ngModel="{{ editarExperiencia?.fechaExp }}" name="fechaExp" class="form-control" id="fechaExp"
-                                placeholder="Fecha"/>
+                            <label for="date">Empresa</label>
+                            <input type="number" ngModel="{{ editarExperiencia?.nombreEmpresa }}" name="nombreEmpresa" class="form-control" id="nombreEmpresa"
+                                placeholder="Empresa"/>
                         </div>
                         <div class="form-group">
-                            <label for="descExp">Descripción</label>
-                            <input type="text" ngModel="{{ editarExperiencia?.descExp }}" name="descExp" class="form-control" id="descExp"
+                            <label for="descExp">Desde</label>
+                            <input type="text" ngModel="{{ editarExperiencia?.fechaInicio }}" name="fechaInicio" class="form-control" id="fechaInicio"
                                 placeholder="Descripción"/>
                         </div>
                         <div class="form-group">
-                            <label for="imgExp">Foto</label>
-                            <input type="text" ngModel="{{ editarExperiencia?.imgExp }}" name="imgExp" class="form-control" id="imgExp" placeholder="Foto"
+                            <label for="imgExp">Hasta</label>
+                            <input type="text" ngModel="{{ editarExperiencia?.fechaFin }}" name="fechaFin" class="form-control" id="imgExp" placeholder="fechaFin"
                                 />
                         </div>
                         <div class="modal-footer">
@@ -162,8 +165,8 @@ aria-hidden="true"
     </div>
 
 </div>
--->
-<!-- delete modal 
+
+<!-- delete modal -->
 
 <div 
 data-bs-tonggle="modal fade"
@@ -187,20 +190,19 @@ aria-hidden="true"
             <div class="modal-body">
                 <p>
                     Estas seguro de que quieres eliminar 
-                    {{ deleteExperiencia?.tituloExp }}?
+                    {{ deleteExperiencia?.descripcion}}?
                 </p>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary"
                                 data-dismiss="modal">
                                 no
                             </button>
-                            <button type="button" (click)="onDeleteExperiencia(deleteExperiencia!.idExp)" class="btn btn-danger"
+                          <!--   <button type="button" (click)="onDeleteExperiencia(deleteExperiencia!.idExp)" class="btn btn-danger"
                             data-dismiss="modal">
                                 si
-                            </button>
+                            </button> -->
                         </div>
             </div>
     </div>
 </div>
 </div>
--->

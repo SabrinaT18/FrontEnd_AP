@@ -1,0 +1,37 @@
+<div class="card mat-card">
+    <div class="card-body">
+    
+     <div id="info-img" *ngFor="let persona of persona">
+     
+     <img class="profile-image" [src]="persona.img">
+     <a type="button" class=""(click)="editarTexto()"><a><i class="bi-pencil bi-solid"></i></a>
+     </a>   
+    
+    
+    <div class="m-3" id="info data" >
+    <h1> {{persona.nombre}} {{persona.apellido}} </h1>
+    <div id="info-company"> {{persona.company}} </div>
+    
+    <a click="setImg()" svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewbox="0 0 16 16">
+    </a>  
+    
+    </div>
+    
+    <div *ngIf="FormVisibility">
+    <form (ngSubmit)="onSubmit(persona)">
+    <p>Imagen de perfil</p>
+    <input type="text"  [(ngModel)]="persona.img"
+    name="imagen" placeholder="URL imagen de perfil"
+    class="form-control">
+     
+    <button type="submit" class="btn m-1 btn-primary">Guardar </button>
+    <button type="close" class="btn m-1 btn-primary">Cerrar  </button>
+    </form>                  
+    </div>
+      
+    Información de contacto       
+    <div id="info-contact">       
+     <app-info-contact> </app-info-contact>  
+      </div>
+
+    </div>
