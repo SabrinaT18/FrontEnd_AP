@@ -30,6 +30,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { SiNoPipe } from './pipes/si-no.pipe';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     SkillsComponent,
     InfoContactComponent,
     PerfilComponent,
+    SiNoPipe,
   ],
   imports: [
     BrowserModule,

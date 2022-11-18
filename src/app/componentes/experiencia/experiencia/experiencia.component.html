@@ -1,44 +1,37 @@
-<section class="card mx-3 my-3   mx-xl-5">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <H2 class="col d-flex align-items-center justify-content-start m-2">Experiencia</H2>
+<section class="card mat-card">
 
-            <button type="button" class="btn  col-1 m-3" (click)="onOpenModal('add')">
-                <a class="nav-link">
-                    <i class="fa-solid fa-plus"></i>
-                    <span class="sr-only"></span>
-                </a>
+ <H2>Experiencia</H2>
+
+        <div class="example-button-container" id="botonAdd">
+            <button mat-mini-fab color="primary" (click)="onOpenModal('add')">
+                <mat-icon> add </mat-icon>
             </button>
-
         </div>
-    </div>
+
 
     <div id="main-container ">
-        <ul class="container-fluid align-items-center justify-content-center p-3"
-            *ngFor="let experiencia of experiencias">
-            <li class="list-group-item w-100 ">
-                <div class="row d-flex align-items-center justify-content-center">
+        <ul *ngFor="let experiencia of experiencias">
 
-                    <h3>{{experiencia.descripcion}}</h3>
-                    <p> {{experiencia.nombreEmpresa}}</p>
-                    <p>{{experiencia.fechaInicio | date }} - {{experiencia.fechaFin | date }}</p>
-                    <p> {{experiencia.tipo_empleo}}</p>
-                    <p> {{experiencia.esTrabajoActual}}</p>
+            <h5>{{experiencia.descripcion}}</h5>
+            <h6> {{experiencia.nombreEmpresa}}</h6>
+            <p>{{experiencia.fechaInicio | date: 'dd/MM/yyyy' }} - {{experiencia.fechaFin | date: 'dd/MM/yyyy' }}</p>
 
-                </div>
+            <p> ¿Es trabajo actual?: {{experiencia.esTrabajoActual | siNo }}</p>
+
+            <p> Tipo de empleo: {{experiencia.tipo_empleo}}</p>
 
 
-                <!--botones de edición-->
-                <div class="col-2">
-                    <button mat-button id="botonEdit" (click)="onOpenModal('edit', experiencia)">
-                        <mat-icon> edit </mat-icon>
-                    </button>
+            <!--botones de edición-->
+            <div class="col-2" id="botonEdit">
+                <button mat-button color="basic" (click)="onOpenModal('edit', experiencia)">
+                    <!-- *ngIf="usuarioAdmin$ |async -->
+                    <mat-icon> edit </mat-icon>
+                </button>
+                <button mat-button color="accent" (click)="onOpenModal ('delete', experiencia)" id="botonDel">
+                    <mat-icon> delete </mat-icon>
+                </button>
+            </div>
 
-                    <button mat-button (click)="onOpenModal ('delete', experiencia)" id="botonDel">
-                        <mat-icon> delete </mat-icon>
-                    </button>
-                </div>
-            </li>
         </ul>
     </div>
 
@@ -70,20 +63,25 @@
                     <input type="hidden" ngModel name="idExp" class="form-control" placeholder="" />
 
                     <div class="form-group">
+
                         <label for="nombreEmpresa">Empresa</label>
+
                         <input type="text" ngModel name="nombreEmpresa" class="form-control" placeholder="Empresa"
                             required />
                     </div>
 
                     <div class="form-group">
                         <label for="fechaInicio">Desde</label>
+
                         <input type="date" ngModel name="fechaInicio" class="form-control" placeholder="fechaInicio" />
                     </div>
+
                     <div class="form-group">
                         <label for="fechaFin">Hasta</label>
                         <input type="date" ngModel name="fechaFin" class="form-control" placeholder="fechaFin"
                             required />
                     </div>
+                    
                     <div class="form-group">
                         <label for="tipo_empleo">tipo de empleo</label>
                         <input type="text" ngModel name="tipo_empleo" class="form-control" placeholder="tipo_empleo"
@@ -186,11 +184,12 @@
             </div>
             <div class="modal-body">
                 <p>
-                   ¿Estás seguro de eliminar: {{ deleteExperiencia?.descripcion}}?
+                    ¿Estás seguro de eliminar: {{ deleteExperiencia?.descripcion}}?
                 </p>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"> No </button>
-                    <button type="button" (click)="onDeleteExperiencia(deleteExperiencia!.idExp)" class="btn btn-danger" data-dismiss="modal">
+                    <button type="button" (click)="onDeleteExperiencia(deleteExperiencia!.idExp)" class="btn btn-danger"
+                        data-dismiss="modal">
                         Si
                     </button>
                 </div>

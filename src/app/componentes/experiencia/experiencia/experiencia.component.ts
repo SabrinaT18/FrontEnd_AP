@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { experiencia_laboral } from 'src/app/models/Experiencia_laboral';
 import { ExperienciaService } from 'src/app/servicios/experiencia.service';
 import { TokenService } from 'src/app/servicios/token.service';
@@ -14,11 +15,14 @@ export class ExperienciaComponent implements OnInit {
   public experiencias: experiencia_laboral[]=[];
   public editarExperiencia:experiencia_laboral | undefined;
   public deleteExperiencia:experiencia_laboral| undefined;
+  usuarioAdmin$!: Observable<Boolean| undefined>;
 
   constructor(private experienciaService:ExperienciaService, private tokenService:TokenService) { }
 
   ngOnInit(): void {
     this.obtenerExperiencia();
+/*     this.usuarioAdmin$ = this.tokenService.getAuthorities;
+ */
   }
 
   public obtenerExperiencia():void{

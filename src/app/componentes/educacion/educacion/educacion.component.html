@@ -1,36 +1,33 @@
 <section class="card mat-card" id="edu">
 
-    <div class="card titles">
-        <h2>Educación</h2>
+    <h2>Educación</h2>
 
-        <div class="row align-items-center">
-            <button mat-button (click)="onOpenModal('add')" id="botonAdd">
+        <div class="example-button-container" id="botonAdd">
+            <button mat-mini-fab color="primary" (click)="onOpenModal('add')" >
                 <mat-icon> add </mat-icon>
             </button>
         </div>
 
-
         <div id="main-container">
-            <ul class="container-fluid align-items-center justify-content-center p-3" *ngFor="let edu of educacion">
+            <ul *ngFor="let edu of educacion">
                 <h5> {{edu.titulo}} </h5>
                 <h6> {{edu.schoolName}} </h6>
                 <p> {{edu.tipo_estudio}}</p>
-                <p><time> {{edu.fechaInicio | date }} </time> -<time> {{edu.fechaFin| date }} </time> </p>
-                <p> {{edu.promedio}}</p>
+                <p><time> {{edu.fechaInicio | date: 'dd/MM/yyyy' }} </time> -<time> {{edu.fechaFin| date }} </time> </p>
+                <p> Promedio: {{edu.promedio}}</p>
 
-                <div class="col-2">
+                <div class="col-2" id="btnEd">
 
-                    <button mat-button id="botonEdit" (click)="onOpenModal('edit', edu)">
+                    <button mat-button color="basic" id="botonEdit" (click)="onOpenModal('edit', edu)">
                         <mat-icon> edit </mat-icon>
                     </button>
 
-                    <button mat-button (click)="onOpenModal('delete', edu)" id="botonDel">
+                    <button mat-button color="accent" (click)="onOpenModal('delete', edu)" id="botonDel">
                         <mat-icon> delete </mat-icon>
                     </button>
                 </div>
             </ul>
         </div>
-    </div>
 
 </section>
 

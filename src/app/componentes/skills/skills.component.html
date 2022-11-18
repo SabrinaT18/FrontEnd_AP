@@ -1,30 +1,34 @@
 <div class="card mat-card">
-    <div class="card titles">
-        <h2>Hard and Soft skills</h2>
 
-        <button mat-button (click)="onOpenModal('add')" id="botonAdd">
-            <mat-icon> add </mat-icon>
-        </button>
+   <h2>Hard and Soft skills</h2>
 
-        <div id="main-container">
-            <ul class="container-fluid align-items-center justify-content-center p-3" *ngFor="let skill of skills">
+        <div class="example-button-container" id="botonAdd">
+            <button mat-mini-fab color="primary" (click)="onOpenModal('add')" >
+                <mat-icon> add </mat-icon>
+            </button>
+        </div>
 
-                <li class="list-group-item W-100">
-                    <h4> {{skill.skillsName}} </h4>
-                    <circle-progress [percent]="skill.skillsPorcentaje" [radius]="70" [titleFontSize]="'2 em'"
+        <div class="skills">
+
+            <ul *ngFor="let skill of skills">
+
+                   <h4> {{skill.skillsName}} </h4>
+
+                    <circle-progress 
+                    [percent]="skill.skillsPorcentaje" [radius]="70" [titleFontSize]="'2 em'"
                         [showSubtitle]="false" [outerStrokeWidth]="8" [innerStrokeWidth]="5"
                         [outerStrokeColor]="'#340856'" [innerStrokeColor]="'#815c97'" [animation]="true"
                         [animationDuration]="500">
                     </circle-progress>
 
-                    <button mat-button id="botonEdit" (click)="onOpenModal('edit', skill)">
+                    <br>
+                    <button mat-button id="botonEdit"  color="basic"(click)="onOpenModal('edit', skill)">
                         <mat-icon> edit </mat-icon>
                     </button>
 
-                    <button mat-button (click)="onOpenModal ('delete', skill)" id="botonDel">
+                    <button mat-button color="accent" (click)="onOpenModal   ('delete', skill)" id="botonDel">
                         <mat-icon> delete </mat-icon>
                     </button>
-                </li>
             </ul>
         </div>
     </div>

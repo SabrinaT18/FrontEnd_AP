@@ -1,26 +1,44 @@
 <div>
-<div class="grid text-center" style="--bs-columns: 4;">
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col"> Teléfono </th>
-        <th scope="col">Email</th>
-        <th scope="col">Domicilio</th>
-        <th scope="col">DNI</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class *ngFor="let info of informaciondeContacto">
-        <td> {{info.telefono}}</td>
-        <td> {{info.email}}</td>
-        <td> {{info.domicilio}}</td>
-        <td> {{info.dni}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="grid text-center" style="--bs-columns: 4;">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col"> Teléfono </th>
+          <th scope="col">Email</th>
+          <th scope="col">Domicilio</th>
+          <th scope="col">DNI</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class *ngFor="let info of informaciondeContacto">
 
-  <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-edit="updateInformacióndeContacto">Editar</button>
-  <button type="button" class="btn btn-secondary" (click)="cerrar()">Cerrar</button>
-</div>
-</div>
+          <td> {{info.telefono}}</td>
+          <td> {{info.email}}</td>
+          <td> {{info.domicilio}}</td>
+          <td> {{info.dni}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="modal-footer" *ngFor="let info of informaciondeContacto">
+      <button type="button" class="btn btn-secondary" (click)="cerrar()">Cerrar</button>
+      <button type="button" class="btn btn-secondary" (click)="editar()">Editar</button>
+      </div>
+
+<div id="formEdit" *ngFor="let info of informaciondeContacto">
+      <div *ngIf="FormVisibility">
+        <form (ngSubmit)="onSubmit(info)">
+          <label> Teléfono </label>
+          <input type="text" [(ngModel)]="info.telefono" name="telefono" placeholder="telefono"
+            class="form-control">
+          <label> Email </label>
+           <input type="text" [(ngModel)]="info.email" name="email" placeholder="email" class="form-control">
+           <label> Domicilio</label>
+          <input type="text" [(ngModel)]="info.domicilio" name="domicilio" placeholder="domicilio" class="form-control">
+          <label> DNI </label>
+          <input type="text" [(ngModel)]="info.dni" name="dni" placeholder="dni" class="form-control">
+
+          <button type="submit" class="btn m-1 btn-primary">Guardar</button>
+        </form>
+      </div>
+    </div>

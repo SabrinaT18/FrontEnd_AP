@@ -1,14 +1,16 @@
 export class Encabezado {
-    idH?: number;
+    idH: number;
     backImage: string;
-    linkedin:string;
-    facebook:string;
-    instagram:string;
-   
-   constructor (backImage: string, linkedin:string, facebook:string, instagram:string) {
-       this.backImage= backImage;
-       this.linkedin= linkedin;
-       this.facebook= facebook;
-       this.instagram= instagram;
-   }
+    linkedin: string;
+    facebook: string;
+    instagram: string;
+
+    constructor(idH: number,
+        backImage: string, linkedin: string, facebook: string, instagram: string) {
+        this.idH = idH;
+        this.backImage = backImage;
+        this.linkedin = linkedin;
+        this.facebook = facebook;
+        this.instagram = instagram;
+    }
 }

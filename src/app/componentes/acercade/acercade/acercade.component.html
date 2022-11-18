@@ -1,31 +1,32 @@
-<section class="card m-3 p-2">
-  <div class="row">
-    <h2 class=" card-title m-2 col"> Sobre mi </h2>
-  </div>
+<section class="card mat-card">
+  <h2> Sobre mi </h2>
   
-  <button mat-button (click)="editarTexto()" id="botonEdit" > 
+  <button mat-button color="basic" (click)="editarTexto()" id="botonEdit" > 
     <mat-icon> edit </mat-icon>
   </button> 
 
-   <div class="container-fluid p-2" *ngFor="let AcercaDe of acercade">
-    <p>{{AcercaDe.acercade}}</p>
+   <div *ngFor="let AcercaDe of acercade">
+    <p id="texto">{{AcercaDe.acercade}}</p>
 
 
-
-    <div class="card-mt4" *ngIf="FormVisibilty">
+    <div *ngIf="FormVisibilty">
       <div class="card-body">
         <div class="card-title">
           Editar texto
         </div>
         <form (ngSubmit)="onSubmit(AcercaDe)">
-          <div class="form-group">
-            <input type="text" [(ngModel)]="AcercaDe.acercade" name="texto" placeholder="Editar texto"
+       
+         
+   <div class="form-group">
+           <input type="text" [(ngModel)]="AcercaDe.acercade" name="texto" placeholder="Editar texto"
               class="form-control">
-          </div>
-          <button type="submit" class="btn btn-primary mt-2">
+         
+              <button type="submit" class="btn btn-primary mt-2">
             Guardar
           </button>
-          <button type="close" class="btn m-1 btn-primary">Cerrar </button>
+          <button type="close" class="btn btn-primary mt-2">Cerrar </button>
+         
+        </div>
 
 
 

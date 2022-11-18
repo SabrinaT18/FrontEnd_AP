@@ -1,32 +1,32 @@
 <section class="card mat-card">
-  <div class="card titles">
-    <h2>Proyectos</h2>
+ 
+   <h2>Proyectos</h2>
 
     <div class="container-fluid">
       <div class="row align-items-center">
 
-        <button mat-button (click)="onOpenModal('add')" id="botonAdd">
-          <mat-icon> add </mat-icon>
-        </button>
+        <div class="example-button-container" id="botonAdd">
+          <button mat-mini-fab color="primary" (click)="onOpenModal('add')" >
+              <mat-icon> add </mat-icon>
+          </button>
       </div>
-    </div>
-
+</div>
     <div id="main-container ">
       <ul class="container-fluid align-items-center justify-content-center p-3" *ngFor="let Proyecto of Proyectos">
         <li class="list-group-item w-100">
 
-          <div class="col-lg-3">
-            <h5>{{Proyecto.proyectosName}} </h5>
-            <h3>{{Proyecto.describeProyect}} </h3>
-            <p> {{Proyecto.fechaProyecto |date }}</p>
+          <div class="col-lg-6">
+            <h4>{{Proyecto.proyectosName}} </h4>
+            <p>{{Proyecto.describeProyect}} </p>
+            <p> Fecha: {{Proyecto.fechaProyecto |date: 'dd/MM/yyyy' }}</p>
           </div>
 
-          <div class="col-2">
-            <button mat-button id="botonEdit" (click)="onOpenModal('edit', Proyecto)">
+          <div class="col-2" id="botonEdit">
+            <button mat-button color="basic" (click)="onOpenModal('edit', Proyecto)">
               <mat-icon> edit </mat-icon>
             </button>
 
-            <button mat-button (click)="onOpenModal ('delete', Proyecto)" id="botonDel">
+            <button mat-button color="accent" (click)="onOpenModal ('delete', Proyecto)" id="botonDel">
               <mat-icon> delete </mat-icon>
             </button>
           </div>
@@ -57,15 +57,16 @@
           </div>
 
           <input type="hidden" ngModel name="idPro" class="form-control" placeholder="" />
-          
+
           <div class="form-group">
             <label for="describeProyect">Descripción </label>
             <input type="text" ngModel name="desc" class="form-control" placeholder="describe el Proyecto" required />
           </div>
-          
-          
+
+
           <label for="fechaProyecto">Fecha </label>
-          <input type="date" ngModel name="fechaProyecto" class="form-control" placeholder="fecha del Proyecto" required />
+          <input type="date" ngModel name="fechaProyecto" class="form-control" placeholder="fecha del Proyecto"
+            required />
           <div class="modal-footer">
             <button type="button" id="add-proyecto-form" class="btn btn-secondary" data-dismiss="modal">
               cerrar</button> <button [disabled]="addForm.invalid" type="submit" class="btn btn-Primary">
@@ -103,15 +104,15 @@
 
           <div class="form-group">
             <label for="describeProyect">Descripción:</label>
-            <input type="text" ngModel="{{ editarProyectos?.describeProyect }}" name="describeProyect" class="form-control"
-              id="describeProyect" placeholder="descripción" />
-</div>
+            <input type="text" ngModel="{{ editarProyectos?.describeProyect }}" name="describeProyect"
+              class="form-control" id="describeProyect" placeholder="descripción" />
+          </div>
 
-            <div class="form-group"> 
-            <label for="date">Fecha:</label> 
-            
-            <input type="date" ngModel="{{ editarProyectos?.fechaProyecto }}"
-              name="fechaProyecto" class="form-control" id="fechaProyecto" placeholder="fecha" />
+          <div class="form-group">
+            <label for="date">Fecha:</label>
+
+            <input type="date" ngModel="{{ editarProyectos?.fechaProyecto }}" name="fechaProyecto" class="form-control"
+              id="fechaProyecto" placeholder="fecha" />
           </div>
 
 
@@ -140,13 +141,15 @@
           <span aria-hidden="true"> </span> </button>
       </div>
       <div class="modal-body">
-        <p> Eliminar {{ deleteProyectos?.proyectosName }} </p>
+        <p> Eliminar: {{ deleteProyectos?.proyectosName }} </p>
         <div class="modal-footer">
+
           <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancelar </button>
 
-    <button type="button" (click)="onDeleteProyectos(deleteProyectos!.idPro)" class="btn btn-danger" data-dismiss="modal">  
-    Aceptar </button>
-  
+          <button type="button" (click)="onDeleteProyectos(deleteProyectos!.idPro)" class="btn btn-danger"
+            data-dismiss="modal">
+            Aceptar </button>
+
         </div>
       </div>
     </div>

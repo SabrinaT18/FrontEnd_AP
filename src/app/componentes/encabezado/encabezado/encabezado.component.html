@@ -1,53 +1,181 @@
-<div class="toolbar" role="banner">
+<section>
+  <div class="toolbar" role="banner">
 
-  <a aria-label="Argentina Programa"
-    href="https://www.argentina.gob.ar/produccion/transformacion-digital-y-economia-del-conocimiento/argentina-programa"
-    title="Ir a Argentina Programa">
-    <img class="logo-AR" src="assets\Logo argpr.jpg">
-  </a>
+    <a aria-label="Argentina Programa"
+      href="https://www.argentina.gob.ar/produccion/transformacion-digital-y-economia-del-conocimiento/argentina-programa"
+      title="Ir a Argentina Programa">
+      <img class="logo-AR" src="assets\Logo argpr.jpg">
+    </a>
+  </div>
+
+  <div *ngFor="let enc of encabezado">
+    <a aria-label="Github" href={{enc.facebook}} title="Github">
+      <img class="Github-logo" src="assets\github.png">
+    </a>
+
+    <a aria-label="Linkedin" href={{enc.linkedin}} title="Linkedin">
+      <img class="linkedin-logo" src="assets\Linkedin logo.png">
+    </a>
+
+    <a aria-label="Instagram" href={{enc.instagram}} title="Instagram">
+      <img class="instagram-logo" src="assets\insta.png">
+    </a>
+
+    <button mat-button id="btn-edit" (click)="onOpenModal('edit', enc)">
+      <mat-icon> edit </mat-icon>
+    </button>
+
+    <div class="card mat-card" id="first-card">
+      <div id="profile-background">
+        <img [src]="enc.backImage">
+      </div>
+
+
+    </div>
+  </div>
+
+</section>
+
+<div class="modal fade" id="addEncModal" tabindex="-1" role="dialog" aria-labelledby="addEncModalLabel"
+  aria-hidden="true">
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addEncModalLabel">Añadir </h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"> </span> </button>
+      </div>
+
+      <div class="modal-body">
+
+        <form #addForm="ngForm" (ngSubmit)="onAddEnc(addForm)">
+          <label for="idH"> Redes Sociales </label>
+          <div class="form-group">
+            <input type="hidden" ngModel name="idH" class="form-control" placeholder="" />
+          </div>
+
+          <div class="form-group">
+            <label for="linkedin">Linkedin</label>
+            <input type="text" ngModel name="linkedin" class="form-control" placeholder="URL linkedin" required />
+          </div>
+
+          <div class="form-group">
+            <label for="instagram">Instagram </label>
+            <input type="text" ngModel name="instagram" class="form-control" placeholder="URL instagram" required />
+          </div>
+
+          <div class="form-group">
+            <label for="facebook">Github</label>
+            <input type="text" ngModel name="facebook" class="form-control" placeholder="URL linkedin" required />
+          </div>
+
+          <div class="form-group">
+            <label for="backImage"> Imagen de portada </label>
+            <input type="text" ngModel name="backImage" class="form-control" placeholder="URL-imagen de portada"
+              required />
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" id="add-Enc-form" class="btn btn-secondary" data-dismiss="modal">
+              cerrar</button> <button [disabled]="addForm.invalid" type="submit" class="btn btn-Primary">
+              Añadir </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div *ngFor="let enc of encabezado">
-  <a aria-label="Github" href={{enc.facebook}} title="Github">
-    <img class="Github-logo" src="assets\github.png">
-  </a>
+<div data-tonggle="modal" data-target="#editEncModal" class="modal fade" id="editEncModal" tabindex="-1" role="dialog"
+  aria-labelledby="editEncLabel" aria-hidden="true">
 
-  <a aria-label="Linkedin" href={{enc.linkedin}} title="Linkedin">
-    <img class="linkedin-logo" src="assets\Linkedin logo.png">
-  </a>
+  <div class="modal-dialog" role="document">
 
-  <a aria-label="Instagram" href={{enc.instagram}} title="Instagram">
-    <img class="instagram-logo" src="assets\insta.png">
-  </a>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editEncModalLabel">Editar </h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"> </span> </button>
+      </div>
 
-  <div class="card mat-card" id="first-card">
-    <div id="profile-background">
-      <img [src]="enc.backImage">
+      <div class="modal-body">
+        <form #editForm="ngForm">
 
-      <div id="info" style="padding: 16px">
-        <button mat-button id="botonEdit" (click)="editarTexto()">
-          <mat-icon> edit </mat-icon>
-        </button>
+          <div class="form-group">
+            <label for="idH">Redes Sociales</label>
 
-        <div class="card mt-4" *ngIf="FormVisibilty">
-          <div class="card-body">
-            <form (ngsubmit)="onSubmit(enc)">
-              <div class="form-group">
-                <input type="text" name="backImage" [(ngModel)]="enc.backImage" placeholder="editar"
-                  class=" form-control">
-                 </div>
-
-              <button class="btn btn-primary mt-2" type="OnSubmit"> Guardar </button>
-              <button type="close" class="btn m-1 btn-primary">Cerrar </button>
-
-            </form>
+            <input type="hidden" ngModel="{{ editarEnc?.idH}}" name="idH" class="form-control" id="idH"
+              placeholder="" />
           </div>
+          <div class="form-group">
+            <label for="linkedin">Linkedin:</label>
+            <input type="text" ngModel="{{ editarEnc?.linkedin }}" name="linkedin" class="form-control" id="linkedin"
+              aria-describedby="linkedin" placeholder="linkedin" />
+          </div>
+
+          <div class="form-group">
+            <label for="instagram">instagram </label>
+            <input type="text" ngModel="{{ editarEnc?.instagram }}" name="instagram" class="form-control" id="instagram"
+              aria-describedby="instagram" placeholder="instagram" />
+          </div>
+
+          <div class="form-group">
+            <label for="facebook"> Github </label>
+            <input type="text" ngModel="{{ editarEnc?.facebook }}" name="facebook" class="form-control" id="facebook"
+              aria-describedby="facebook" placeholder="facebook" />
+          </div>
+
+
+          <div class="form-group">
+            <label for="backImage"> Imagen de portada </label>
+            <input type="text" ngModel="{{ editarEnc?.backImage }}" name="backImage" class="form-control" id="backImage"
+              aria-describedby="backImage" placeholder="backImage" />
+          </div>
+
+
+          <div class="modal-footer">
+            <button type="button" id="edit-proyecto-form" class="btn btn-secondary" data-dismiss="modal">
+              cerrar </button>
+            <button type="submit" (click)="onUpdateEnc(editForm.value)" class="btn btn-Primary" data-dismiss="modal">
+              Guardar </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div data-bs-tonggle="modal fade" data-bs-target="#deleteModelLabel" class="modal" id="deleteEncModal" tabindex="-1"
+  role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteEncModalLabel"> Borrar </h5>
+
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"> </span> </button>
+      </div>
+
+      <div class="modal-body">
+        <p> Eliminar enlace a redes sociales: </p>
+        <pre>
+           {{ deleteEnc?.instagram}}
+{{ deleteEnc?.facebook}}
+{{ deleteEnc?.linkedin}}
+      </pre>
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancelar </button>
+
+          <button type="button" (click)="onDeleteEnc(deleteEnc!.idH)" class="btn btn-danger" data-dismiss="modal">
+            Aceptar </button>
+
         </div>
       </div>
-    
-      
-    
-    
     </div>
   </div>
 </div>
