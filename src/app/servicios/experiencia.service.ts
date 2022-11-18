@@ -16,7 +16,7 @@ public  getExperiencia_laboral():Observable<experiencia_laboral[]>{
 }
 
 public createExperiencia_laboral(experiencias: experiencia_laboral):Observable<experiencia_laboral>{
-  return this.http.post<experiencia_laboral>(`${this.URL}/crear`,experiencias);
+  return this.http.post<experiencia_laboral>(`${this.URL}/crear`, experiencias);
 }
 public editExperiencia_laboral(experiencias: experiencia_laboral):Observable<experiencia_laboral>{
   return this.http.put<experiencia_laboral>(`${this.URL}/editar`,experiencias);

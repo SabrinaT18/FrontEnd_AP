@@ -41,7 +41,7 @@ export class EncabezadoComponent implements OnInit {
 
   onSubmit(encabezado: Encabezado): void {
     this.FormVisibilty = false;
-    document.getElementById('texto')?.click();
+    document.getElementById('backImage')?.click();
     this.encabezadoService.editEncabezado(encabezado).subscribe({
       next: (Response: Encabezado) => {
         console.log(Response);

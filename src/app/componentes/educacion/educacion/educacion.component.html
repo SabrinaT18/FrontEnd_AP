@@ -37,7 +37,7 @@
 <div class="modal fade" id="addEducacionModal" tabindex="-1" role="dialog" aria-labelledby="addEducacionModalLabel"
     aria-hidden="true">
 
-<div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addEducacionModalLabel">Añadir Educación</h5>
@@ -47,51 +47,37 @@
 
             <div class="modal-body">
                 <form #addForm="ngForm" (ngSubmit)="onAddEducacion(addForm)">
-                   
+
                     <div class="form-group">
 
                         <label for="titulo"> Título: </label>
-                        <input type="text" ngModel 
-                        name="titulo" 
-                        class="form-control" 
-                        aria-describedby="titulo"
-                     placeholder="Título" required />
+                        <input type="text" ngModel name="titulo" class="form-control" aria-describedby="titulo"
+                            placeholder="Título" required />
                     </div>
 
-                    <input type="hidden" ngModel 
-                    name="idEd" class="form-control" 
-                    placeholder="" />
-                    
+                    <input type="hidden" ngModel name="idEd" class="form-control" placeholder="" />
+
                     <div class="form-group">
                         <label for="schoolName">Escuela: </label>
-                        <input type="text" ngModel 
-                        name="schoolName" class="form-control" 
-                        placeholder="School Name"
+                        <input type="text" ngModel name="schoolName" class="form-control" placeholder="School Name"
                             required />
                     </div>
 
                     <label for="fechaInicio">Fecha Inicio:</label>
-                    <input type="date" ngModel name="fechaInicio" 
-                    class="form-control" placeholder="Inicio"
-                        required />
+                    <input type="date" ngModel name="fechaInicio" class="form-control" placeholder="Inicio" required />
 
                     <div class="form-group">
                         <label for="fechaFin">Fecha Fin:</label>
-                        <input type="date" ngModel 
-                        name="fechaFin" class="form-control" placeholder="Fin" />
+                        <input type="date" ngModel name="fechaFin" class="form-control" placeholder="Fin" />
                     </div>
                     <div class="form-group">
                         <label for="promedio">Promedio:</label>
-                        <input type="text" ngModel name="promedio" 
-                        class="form-control" placeholder="Promedio"
+                        <input type="text" ngModel name="promedio" class="form-control" placeholder="Promedio"
                             required />
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" 
-                        id="add-educacion-form" 
-                        class="btn btn-secondary" 
-                        data-dismiss="modal">
+                        <button type="button" id="add-educacion-form" class="btn btn-secondary" data-dismiss="modal">
                             cerrar
                         </button>
                         <button [disabled]="addForm.invalid" type="submit" class="btn btn-Primary">
@@ -125,33 +111,40 @@
                             id="tituloEdu" aria-describedby="Titulo" placeholder="Título" />
                     </div>
                     <div class="form-group">
-                        <label for="imgEdu">Escuela:</label>
+                        <label for="schoolName">Escuela:</label>
                         <input type="text" ngModel="{{ editarEducacion?.schoolName }}" name="SchoolName"
-                            class="form-control" id="School" placeholder="SchoolName" />
-                        <div class="form-group"> </div>
-                        <label for="date">Fecha Inicio:</label> <input type="number"
-                            ngModel="{{ editarEducacion?.fechaInicio }}" name="fechainicio" class="form-control"
-                            id="fechainicio" placeholder="Inicio" />
+                            class="form-control" id="schoolName" placeholder="SchoolName" />
                     </div>
+
+                    <div class="form-group">
+                        <label for="date">Fecha Inicio:</label>
+                        <input type="date" ngModel="{{ editarEducacion?.fechaInicio }}" name="fechainicio"
+                            class="form-control" id="fechainicio" placeholder="Inicio" />
+                    </div>
+
                     <div class="form-group">
                         <label for="date">Fecha Fin:</label>
-                        <input type="text" ngModel="{{ editarEducacion?.fechaFin }}" name="fechafin"
+                        <input type="date" ngModel="{{ editarEducacion?.fechaFin }}" name="fechafin"
                             class="form-control" id="Fechafin" placeholder="fecha Fin" />
-                        <div class="form-group">
-                            <label for="date">Promedio</label>
-                            <input type="text" ngModel="{{ editarEducacion?.promedio }}" name="promedio"
-                                class="form-control" id="prom" placeholder="Promedio obtenido" />
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" id="add-educacion-form" class="btn btn-secondary"
-                                data-dismiss="modal">
-                                cerrar </button>
-                            <button type="submit" (click)="onUpdateEducacion(editForm.value)" class="btn btn-Primary"
-                                data-dismiss="modal">
-                                Añadir cambios </button>
-                        </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="text">Promedio</label>
+                        <input type="text" ngModel="{{ editarEducacion?.promedio }}" name="promedio"
+                            class="form-control" id="prom" placeholder="Promedio obtenido" />
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" id="add-educacion-form" class="btn btn-secondary" data-dismiss="modal">
+                            cerrar </button>
+
+
+                        <button type="submit" (click)="onUpdateEducacion(editForm.value)" class="btn btn-Primary"
+                            data-dismiss="modal">
+                            Añadir cambios </button>
+                    </div>
+
                 </form>
             </div>
         </div>
@@ -175,10 +168,10 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
                         Cancelar</button>
 
-                    <!--- NO FUNCIONA
-<button type="button" (click)="onDeleteEducacion(deleteEducacion!.idEd)" class="btn btn-danger" data-dismiss="modal">  
-  Aceptar </button>
-  --->
+                    <button type="button" (click)="onDeleteEducacion(deleteEducacion!.idEd)" class="btn btn-danger"
+                        data-dismiss="modal">
+                        Si
+                    </button>
                 </div>
             </div>
         </div>

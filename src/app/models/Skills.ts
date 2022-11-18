@@ -1,12 +1,14 @@
 export class skills {
-    idS?: number;
+    idS: number;
     skillsName: String;
     skillsPorcentaje: number;
 
-   
-   constructor (skillsName: String, skillsPorcentaje: number ) {
-       this.skillsName = skillsName;
-       this.skillsPorcentaje = skillsPorcentaje;
-      
-   }
+
+    constructor(idS: number,
+        skillsName: String, skillsPorcentaje: number) {
+        this.idS = idS;
+        this.skillsName = skillsName;
+        this.skillsPorcentaje = skillsPorcentaje;
+
+    }
 }

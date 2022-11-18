@@ -1,12 +1,14 @@
 export class proyectos {
-    idPro?: number;
+    idPro: number;
     proyectosName: String;
     describeProyect: String;
     fechaProyecto:String;
 
    
-   constructor (proyectosName: String, describeProyect: String, fechaProyecto:String ) {
-       this.proyectosName = proyectosName;
+   constructor ( idPro:number ,
+    proyectosName: String, describeProyect: String, fechaProyecto:String ) {
+        this.idPro = idPro;
+        this.proyectosName = proyectosName;
        this.describeProyect = describeProyect;
        this.fechaProyecto = fechaProyecto;
        

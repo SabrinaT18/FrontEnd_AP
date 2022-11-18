@@ -36,6 +36,7 @@ export class SkillsComponent implements OnInit {
   public onOpenModal(mode:String, skills?: skills):void{
     const container=document.getElementById('main-container');
     const button=document.createElement('button');
+    button.style.display='none';
     button.setAttribute('data-toggle','modal');
     if(mode==='add'){
       button.setAttribute('data-target','#addSkillsModal');
@@ -48,48 +49,50 @@ export class SkillsComponent implements OnInit {
     }
     container?.appendChild(button); 
     button.click();
-    }
+    console.log("llama a la funcion");
+  }
+
   
 
-  public onAddSkills(addForm: NgForm):void{
-    document.getElementById('add-skills-form')?.click();
-    this.skillsService.createSkills(addForm.value).subscribe({
-      next: (response:skills) =>{
-        console.log(response);
-        this.obtenerSkills();
-        addForm.reset();
-      },
-      error:(error:HttpErrorResponse)=>{
-        alert(error.message)
-        addForm.reset();
-      }
-    })
-  }
-
-  public onUpdateSkills(skills: skills){
-    this.editarSkills=skills;
-    document.getElementById('add-skills-form')?.click();
-    this.skillsService.editSkills(skills).subscribe({
-      next: (response:skills) =>{
-        console.log(response);
-        this.obtenerSkills();
-      },
-      error:(error:HttpErrorResponse)=>{
-        alert(error.message)
-      }
-    })
-  }
-
-  public onDeleteSkills(idS:number):void{
-    this.skillsService.deleteSkills(idS).subscribe({
-      next: (response:void) =>{
-        console.log(response);
-        this.obtenerSkills();
-      },
-      error:(error:HttpErrorResponse)=>{
-        alert(error.message)
-      }
-    })
-  }
+    public onAddSkills(addForm: NgForm):void{
+      document.getElementById('add-skills-form')?.click();
+      this.skillsService.createSkills(addForm.value).subscribe({
+        next: (response:skills) =>{
+          console.log(response);
+          this.obtenerSkills();
+          addForm.reset();
+        },
+        error:(error:HttpErrorResponse)=>{
+          alert(error.message)
+          addForm.reset();
+        }
+      })
+    }
+  
+    public onUpdateSkills(skills: skills){
+      this.editarSkills=skills;
+      document.getElementById('add-skills-form')?.click();
+      this.skillsService.editSkills(skills).subscribe({
+        next: (response:skills) =>{
+          console.log(response);
+          this.obtenerSkills();
+        },
+        error:(error:HttpErrorResponse)=>{
+          alert(error.message)
+        }
+      })
+    }
+  
+    public onDeleteSkills(idS:number):void{
+      this.skillsService.deleteSkills(idS).subscribe({
+        next: (response:void) =>{
+          console.log(response);
+          this.obtenerSkills();
+        },
+        error:(error:HttpErrorResponse)=>{
+          alert(error.message)
+        }
+      })
+    }
 
 }
