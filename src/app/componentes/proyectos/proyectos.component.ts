@@ -38,13 +38,13 @@ export class ProyectosComponent implements OnInit {
   button.style.display='none';
   button.setAttribute('data-toggle','modal');
    if(mode==='add'){
-  button.setAttribute('data-target','#addProyectosModal');
+  button.setAttribute('data-target','#addProyectoModal');
   }else if(mode==='delete'){
   this.deleteProyectos= Proyectos;
-  button.setAttribute('data-target','#deleteProyectosModal');
+  button.setAttribute('data-target','#deleteProyectoModal');
    }else if(mode==='edit'){
    this.editarProyectos= Proyectos;
-  button.setAttribute('data-target','#editProyectosModal');
+  button.setAttribute('data-target','#editProyectoModal');
    }
   container?.appendChild(button); 
   button.click();
@@ -52,7 +52,7 @@ export class ProyectosComponent implements OnInit {
       
         
   public onAddProyectos(addForm: NgForm):void{
-  document.getElementById('add-Proyectos-form')?.click();
+  document.getElementById('add-Proyecto-form')?.click();
   this.ProyectosService.createProyectos(addForm.value).subscribe({
   next: (response:proyectos) =>{
   console.log(response);
@@ -68,7 +68,7 @@ export class ProyectosComponent implements OnInit {
         
   public onUpdateProyectos(Proyectos: proyectos){
   this.editarProyectos=Proyectos;
-  document.getElementById('add-Proyectos-form')?.click();
+  document.getElementById('add-Proyecto-form')?.click();
   this.ProyectosService.editProyectos(Proyectos).subscribe({
    next: (response: proyectos) =>{
    console.log(response);

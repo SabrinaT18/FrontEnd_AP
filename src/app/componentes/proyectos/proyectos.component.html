@@ -18,7 +18,7 @@
           <div class="col-lg-3">
             <h5>{{Proyecto.proyectosName}} </h5>
             <h3>{{Proyecto.describeProyect}} </h3>
-            <p> {{Proyecto.fechaProyecto}}</p>
+            <p> {{Proyecto.fechaProyecto |date }}</p>
           </div>
 
           <div class="col-2">
@@ -36,7 +36,7 @@
   </div>
 </section>
 
-<div class="modal fade" id="addProyectosModal" tabindex="-1" role="dialog" aria-labelledby="addProyectosModalLabel"
+<div class="modal fade" id="addProyectoModal" tabindex="-1" role="dialog" aria-labelledby="addProyectoModalLabel"
   aria-hidden="true">
 
   <div class="modal-dialog" role="document">
@@ -51,19 +51,23 @@
 
         <form #addForm="ngForm" (ngSubmit)="onAddProyectos(addForm)">
           <div class="form-group">
-            <label for="tituloPro"> Título </label>
-            <input type="text" ngModel name="tituloPro" class="form-control" aria-describedby="Titulo"
-              placeholder="Título" required />
+            <label for="proyectosName"> Nombre del proyecto </label>
+            <input type="text" ngModel name="proyectosName" class="form-control" aria-describedby="proyectosName"
+              placeholder="Nombre del proyecto" required />
           </div>
+
           <input type="hidden" ngModel name="idPro" class="form-control" placeholder="" />
+          
           <div class="form-group">
-            <label for="SchoolName">Descripción </label>
-            <input type="number" ngModel name="desc" class="form-control" placeholder="Descripción" required />
+            <label for="describeProyect">Descripción </label>
+            <input type="text" ngModel name="desc" class="form-control" placeholder="describe el Proyecto" required />
           </div>
-          <label for="fechaIni">Fecha </label>
-          <input type="date" ngModel name="fechaInicio" class="form-control" placeholder="fecha" required />
+          
+          
+          <label for="fechaProyecto">Fecha </label>
+          <input type="date" ngModel name="fechaProyecto" class="form-control" placeholder="fecha del Proyecto" required />
           <div class="modal-footer">
-            <button type="button" id="add-educacion-form" class="btn btn-secondary" data-dismiss="modal">
+            <button type="button" id="add-proyecto-form" class="btn btn-secondary" data-dismiss="modal">
               cerrar</button> <button [disabled]="addForm.invalid" type="submit" class="btn btn-Primary">
               Añadir </button>
           </div>
@@ -73,38 +77,46 @@
   </div>
 </div>
 
-<div data-tonggle="modal" data-target="#editProyectosModal" class="modal fade" id="editEducacionModal" tabindex="-1"
-  role="dialog" aria-labelledby="editEducacionModalLabel" aria-hidden="true">
+<div data-tonggle="modal" data-target="#editProyectosModal" class="modal fade" id="editProyectoModal" tabindex="-1"
+  role="dialog" aria-labelledby="editProyectoModalLabel" aria-hidden="true">
 
   <div class="modal-dialog" role="document">
+
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editProyectosModalLabel">Editar Proyectos</h5>
+        <h5 class="modal-title" id="editProyectosModalLabel">Editar Proyecto</h5>
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true"> </span> </button>
       </div>
 
       <div class="modal-body">
         <form #editForm="ngForm">
+
           <div class="form-group">
-            <label for="tituloPro">Título:</label>
+            <label for="proyectosName">Título:</label>
             <input type="hidden" ngModel="{{ editarProyectos?.idPro}}" name="idPro" class="form-control" id="idPro"
               placeholder="" />
-            <input type="text" ngModel="{{ editarProyectos?.proyectosName }}" name="titulo" class="form-control"
-              id="titulo" aria-describedby="Titulo" placeholder="Título" />
+
+            <input type="text" ngModel="{{ editarProyectos?.proyectosName }}" name="proyectosName" class="form-control"
+              id="proyectosName" aria-describedby="Titulo" placeholder="Nombre del proyecto" />
           </div>
+
           <div class="form-group">
-            <label for="desc">Descripción:</label>
-            <input type="text" ngModel="{{ editarProyectos?.describeProyect }}" name="descr" class="form-control"
-              id="desc" placeholder="descripción" />
-            <div class="form-group"> </div>
-            <label for="date">Fecha:</label> <input type="number" ngModel="{{ editarProyectos?.fechaProyecto }}"
-              name="fecha" class="form-control" id="fecha" placeholder="fecha" />
+            <label for="describeProyect">Descripción:</label>
+            <input type="text" ngModel="{{ editarProyectos?.describeProyect }}" name="describeProyect" class="form-control"
+              id="describeProyect" placeholder="descripción" />
+</div>
+
+            <div class="form-group"> 
+            <label for="date">Fecha:</label> 
+            
+            <input type="date" ngModel="{{ editarProyectos?.fechaProyecto }}"
+              name="fechaProyecto" class="form-control" id="fechaProyecto" placeholder="fecha" />
           </div>
 
 
           <div class="modal-footer">
-            <button type="button" id="add-educacion-form" class="btn btn-secondary" data-dismiss="modal">
+            <button type="button" id="edit-proyecto-form" class="btn btn-secondary" data-dismiss="modal">
               cerrar </button>
             <button type="submit" (click)="onUpdateProyectos(editForm.value)" class="btn btn-Primary"
               data-dismiss="modal">
@@ -116,13 +128,14 @@
   </div>
 </div>
 
-<div data-bs-tonggle="modal fade" data-bs-target="#deleteModelLabel" class="modal" id="deleteEducacionModal"
+<div data-bs-tonggle="modal fade" data-bs-target="#deleteModelLabel" class="modal" id="deleteProyectoModal"
   tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
 
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="deleteEducacionModalLabel"> Borrar Proyectos </h5>
+        <h5 class="modal-title" id="deleteProyectoModalLabel"> Borrar Proyecto </h5>
+
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true"> </span> </button>
       </div>
@@ -131,10 +144,9 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancelar </button>
 
-          <!--- NO FUNCIONA
-    <button type="button" (click)="onDeleteProyectos(deleteProyectos!.IdPro)" class="btn btn-danger" data-dismiss="modal">  
+    <button type="button" (click)="onDeleteProyectos(deleteProyectos!.idPro)" class="btn btn-danger" data-dismiss="modal">  
     Aceptar </button>
-    -->
+  
         </div>
       </div>
     </div>
