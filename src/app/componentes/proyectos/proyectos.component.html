@@ -1,0 +1,157 @@
+<section class="card mat-card">
+ 
+   <h2>Proyectos</h2>
+
+    <div class="container-fluid">
+      <div class="row align-items-center">
+
+        <div class="example-button-container" id="botonAdd">
+          <button mat-mini-fab color="primary" (click)="onOpenModal('add')" >
+              <mat-icon> add </mat-icon>
+          </button>
+      </div>
+</div>
+    <div id="main-container ">
+      <ul class="container-fluid align-items-center justify-content-center p-3" *ngFor="let Proyecto of Proyectos">
+        <li class="list-group-item w-100">
+
+          <div class="col-lg-6">
+            <h4>{{Proyecto.proyectosName}} </h4>
+            <p>{{Proyecto.describeProyect}} </p>
+            <p> Fecha: {{Proyecto.fechaProyecto |date: 'dd/MM/yyyy' }}</p>
+          </div>
+
+          <div class="col-2" id="botonEdit">
+            <button mat-button color="basic" (click)="onOpenModal('edit', Proyecto)">
+              <mat-icon> edit </mat-icon>
+            </button>
+
+            <button mat-button color="accent" (click)="onOpenModal ('delete', Proyecto)" id="botonDel">
+              <mat-icon> delete </mat-icon>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="modal fade" id="addProyectoModal" tabindex="-1" role="dialog" aria-labelledby="addProyectoModalLabel"
+  aria-hidden="true">
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addProyectosModalLabel">Añadir Proyecto</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"> </span> </button>
+      </div>
+
+      <div class="modal-body">
+
+        <form #addForm="ngForm" (ngSubmit)="onAddProyectos(addForm)">
+          <div class="form-group">
+            <label for="proyectosName"> Nombre del proyecto </label>
+            <input type="text" ngModel name="proyectosName" class="form-control" aria-describedby="proyectosName"
+              placeholder="Nombre del proyecto" required />
+          </div>
+
+          <input type="hidden" ngModel name="idPro" class="form-control" placeholder="" />
+
+          <div class="form-group">
+            <label for="describeProyect">Descripción </label>
+            <input type="text" ngModel name="desc" class="form-control" placeholder="describe el Proyecto" required />
+          </div>
+
+
+          <label for="fechaProyecto">Fecha </label>
+          <input type="date" ngModel name="fechaProyecto" class="form-control" placeholder="fecha del Proyecto"
+            required />
+          <div class="modal-footer">
+            <button type="button" id="add-proyecto-form" class="btn btn-secondary" data-dismiss="modal">
+              cerrar</button> <button [disabled]="addForm.invalid" type="submit" class="btn btn-Primary">
+              Añadir </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div data-tonggle="modal" data-target="#editProyectosModal" class="modal fade" id="editProyectoModal" tabindex="-1"
+  role="dialog" aria-labelledby="editProyectoModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog" role="document">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editProyectosModalLabel">Editar Proyecto</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"> </span> </button>
+      </div>
+
+      <div class="modal-body">
+        <form #editForm="ngForm">
+
+          <div class="form-group">
+            <label for="proyectosName">Título:</label>
+            <input type="hidden" ngModel="{{ editarProyectos?.idPro}}" name="idPro" class="form-control" id="idPro"
+              placeholder="" />
+
+            <input type="text" ngModel="{{ editarProyectos?.proyectosName }}" name="proyectosName" class="form-control"
+              id="proyectosName" aria-describedby="Titulo" placeholder="Nombre del proyecto" />
+          </div>
+
+          <div class="form-group">
+            <label for="describeProyect">Descripción:</label>
+            <input type="text" ngModel="{{ editarProyectos?.describeProyect }}" name="describeProyect"
+              class="form-control" id="describeProyect" placeholder="descripción" />
+          </div>
+
+          <div class="form-group">
+            <label for="date">Fecha:</label>
+
+            <input type="date" ngModel="{{ editarProyectos?.fechaProyecto }}" name="fechaProyecto" class="form-control"
+              id="fechaProyecto" placeholder="fecha" />
+          </div>
+
+
+          <div class="modal-footer">
+            <button type="button" id="edit-proyecto-form" class="btn btn-secondary" data-dismiss="modal">
+              cerrar </button>
+            <button type="submit" (click)="onUpdateProyectos(editForm.value)" class="btn btn-Primary"
+              data-dismiss="modal">
+              Guardar </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div data-bs-tonggle="modal fade" data-bs-target="#deleteModelLabel" class="modal" id="deleteProyectoModal"
+  tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteProyectoModalLabel"> Borrar Proyecto </h5>
+
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"> </span> </button>
+      </div>
+      <div class="modal-body">
+        <p> Eliminar: {{ deleteProyectos?.proyectosName }} </p>
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"> Cancelar </button>
+
+          <button type="button" (click)="onDeleteProyectos(deleteProyectos!.idPro)" class="btn btn-danger"
+            data-dismiss="modal">
+            Aceptar </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

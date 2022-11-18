@@ -1,0 +1,50 @@
+.mat-card {
+    border-radius: 15px;
+    margin: 20px 10px;
+    padding: 10px;
+    border-color: gray;
+}
+
+
+ul.items-list {
+    list-style: none inside;
+}
+
+ul.items-list li {
+    display: flex;
+    margin: 10px 0;
+}
+
+ul.items-list li div.data-container {
+    flex-grow: 1;
+}
+
+ul.items-list li div.data-container a {
+    display: flex;
+    color: black;
+}
+
+
+h5 {
+    display: inline
+}
+
+h2 {
+    padding: 30px 30px 0 30px ;
+}
+
+.p {
+    font-size: 12px;
+}
+
+#botonAdd {
+    margin-left: 75%;
+    display: flex;
+}
+
+#botonEdit {
+    display: flex;
+    margin-left: 60%;
+}
+
+

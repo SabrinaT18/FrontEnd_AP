@@ -1,0 +1,26 @@
+.mat-card {
+    border-radius: 15px;
+    margin: 20px 10px;
+    padding: 10px;
+    border-color: gray;
+    }
+
+.i{
+    margin: 2px;
+    color:black;
+ }
+
+ #texto{
+    color:black;
+    font-size: 16px;
+    margin-left: 25px;
+}
+    
+ h2 {
+    padding: 30px 30px 0 30px ;
+}
+
+#botonEdit {
+    display: flex;
+    margin-left: 60%;
+}

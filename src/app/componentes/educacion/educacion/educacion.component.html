@@ -1,1 +1,176 @@
-<p>educacion works!</p>
+<section class="card mat-card" id="edu">
+
+    <h2>Educación</h2>
+
+        <div class="example-button-container" id="botonAdd">
+            <button mat-mini-fab color="primary" (click)="onOpenModal('add')" >
+                <mat-icon> add </mat-icon>
+            </button>
+        </div>
+
+        <div id="main-container">
+            <ul *ngFor="let edu of educacion">
+                <h5> {{edu.titulo}} </h5>
+                <h6> {{edu.schoolName}} </h6>
+                <p> {{edu.tipo_estudio}}</p>
+                <p><time> {{edu.fechaInicio | date: 'dd/MM/yyyy' }} </time> -<time> {{edu.fechaFin| date }} </time> </p>
+                <p> Promedio: {{edu.promedio}}</p>
+
+                <div class="col-2" id="btnEd">
+
+                    <button mat-button color="basic" id="botonEdit" (click)="onOpenModal('edit', edu)">
+                        <mat-icon> edit </mat-icon>
+                    </button>
+
+                    <button mat-button color="accent" (click)="onOpenModal('delete', edu)" id="botonDel">
+                        <mat-icon> delete </mat-icon>
+                    </button>
+                </div>
+            </ul>
+        </div>
+
+</section>
+
+<div class="modal fade" id="addEducacionModal" tabindex="-1" role="dialog" aria-labelledby="addEducacionModalLabel"
+    aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addEducacionModalLabel">Añadir Educación</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"> </span> </button>
+            </div>
+
+            <div class="modal-body">
+                <form #addForm="ngForm" (ngSubmit)="onAddEducacion(addForm)">
+
+                    <div class="form-group">
+
+                        <label for="titulo"> Título: </label>
+                        <input type="text" ngModel name="titulo" class="form-control" aria-describedby="titulo"
+                            placeholder="Título" required />
+                    </div>
+
+                    <input type="hidden" ngModel name="idEd" class="form-control" placeholder="" />
+
+                    <div class="form-group">
+                        <label for="schoolName">Escuela: </label>
+                        <input type="text" ngModel name="schoolName" class="form-control" placeholder="School Name"
+                            required />
+                    </div>
+
+                    <label for="fechaInicio">Fecha Inicio:</label>
+                    <input type="date" ngModel name="fechaInicio" class="form-control" placeholder="Inicio" required />
+
+                    <div class="form-group">
+                        <label for="fechaFin">Fecha Fin:</label>
+                        <input type="date" ngModel name="fechaFin" class="form-control" placeholder="Fin" />
+                    </div>
+                    <div class="form-group">
+                        <label for="promedio">Promedio:</label>
+                        <input type="text" ngModel name="promedio" class="form-control" placeholder="Promedio"
+                            required />
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" id="add-educacion-form" class="btn btn-secondary" data-dismiss="modal">
+                            cerrar
+                        </button>
+                        <button [disabled]="addForm.invalid" type="submit" class="btn btn-Primary">
+                            Añadir cambios
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-tonggle="modal" data-target="#editEducacionModal" class="modal fade" id="editEducacionModal" tabindex="-1"
+    role="dialog" aria-labelledby="editEducacionModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editEducacionModalLabel">Editar Educación</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"> </span> </button>
+            </div>
+
+            <div class="modal-body">
+                <form #editForm="ngForm">
+                    <div class="form-group">
+                        <label for="tituloEdu">Título:</label>
+                        <input type="hidden" ngModel="{{ editarEducacion?.idEd}}" name="idEdu" class="form-control"
+                            id="idEdu" placeholder="" />
+                        <input type="text" ngModel="{{ editarEducacion?.titulo }}" name="tituloEdu" class="form-control"
+                            id="tituloEdu" aria-describedby="Titulo" placeholder="Título" />
+                    </div>
+                    <div class="form-group">
+                        <label for="schoolName">Escuela:</label>
+                        <input type="text" ngModel="{{ editarEducacion?.schoolName }}" name="SchoolName"
+                            class="form-control" id="schoolName" placeholder="SchoolName" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Fecha Inicio:</label>
+                        <input type="date" ngModel="{{ editarEducacion?.fechaInicio }}" name="fechainicio"
+                            class="form-control" id="fechainicio" placeholder="Inicio" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Fecha Fin:</label>
+                        <input type="date" ngModel="{{ editarEducacion?.fechaFin }}" name="fechafin"
+                            class="form-control" id="Fechafin" placeholder="fecha Fin" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text">Promedio</label>
+                        <input type="text" ngModel="{{ editarEducacion?.promedio }}" name="promedio"
+                            class="form-control" id="prom" placeholder="Promedio obtenido" />
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" id="add-educacion-form" class="btn btn-secondary" data-dismiss="modal">
+                            cerrar </button>
+
+
+                        <button type="submit" (click)="onUpdateEducacion(editForm.value)" class="btn btn-Primary"
+                            data-dismiss="modal">
+                            Añadir cambios </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-bs-tonggle="modal fade" data-bs-target="#deleteModelLabel" class="modal" id="deleteEducacionModal"
+    tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteEducacionModalLabel"> Borrar educación </h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"> </span> </button>
+            </div>
+
+            <div class="modal-body">
+                <p> Eliminar {{ deleteEducacion?.titulo }} </p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Cancelar</button>
+
+                    <button type="button" (click)="onDeleteEducacion(deleteEducacion!.idEd)" class="btn btn-danger"
+                        data-dismiss="modal">
+                        Si
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

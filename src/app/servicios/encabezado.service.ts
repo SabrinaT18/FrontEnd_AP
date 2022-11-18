@@ -11,8 +11,8 @@ export class EncabezadoService {
 
   constructor(private http: HttpClient) { }
    
-  public getEncabezado () : Observable <Encabezado>{
-    return this.http.get<Encabezado> (this.URL+'traer');
+  public getEncabezado(): Observable<Encabezado[]>{
+    return this.http.get<Encabezado[]> (`${this.URL}/traer`);
     }
    
     public deleteEncabezado(encabezadoId: number) : Observable <void> {
