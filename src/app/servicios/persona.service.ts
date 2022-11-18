@@ -7,16 +7,15 @@ import { Persona } from '../models/Persona';
   providedIn: 'root'
 })
 export class PersonaService {
-  URL = 'https://portfoliosantorosabrina.herokuapp.com/api';
-
+URL = 'https://portfoliosantorosabrina.herokuapp.com/api/persona';
 
 constructor(private http: HttpClient) { }
 
-public getPersona () : Observable <Persona[]>{
-  return this.http.get<Persona[]> (`${this.URL}/persona/traer`);
+public getPersona() : Observable <Persona[]>{
+  return this.http.get<Persona[]> (`${this.URL}/traer`);
 }
 
- public deletePersona (personaId: number) : Observable <void>{
+ public deletePersona(personaId: number) : Observable <void>{
   return this.http.delete<void> (`${this.URL}/persona/delete/${personaId}`);
  }
 

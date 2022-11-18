@@ -2,13 +2,13 @@ export class educacion {
     idEd?: number;
     schoolName: String;
     titulo: String;
-    fechaInicio: String;
-    fechaFin: String;
+    fechaInicio: Date;
+    fechaFin: Date;
     promedio:String;
     tipo_estudio: String;
     
     
-    constructor (schoolName: String, titulo: String, fechaInicio: String,         fechaFin: String, promedio:String, tipo_estudio: String) {
+    constructor (schoolName: String, titulo: String, fechaInicio: Date, fechaFin: Date, promedio:String, tipo_estudio: String) {
        this.schoolName = schoolName;
        this.titulo = titulo;
        this.fechaInicio = fechaInicio;

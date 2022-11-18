@@ -20,10 +20,12 @@
                 <p> {{edu.promedio}}</p>
 
                 <div class="col-2">
-                    <a type="button" class="" (click)="onOpenModal('edit', edu)">
-                        <i class="bi-pencil bi-solid"></i>
-                    </a>
-                    <a type="button" class="btn btn-danger" (click)="onOpenModal ('delete',edu)">
+                                  
+  <button mat-button  id="botonEdit" (click)="onOpenModal('edit', edu)"> 
+    <mat-icon> edit </mat-icon>
+  </button> 
+
+                    <a type="button" class="btn btn-danger" (click)="onOpenModal ('delete', edu)">
                         <i class="bi bi-x-square"></i>
                     </a>
 

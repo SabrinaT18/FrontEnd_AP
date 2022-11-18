@@ -22,7 +22,14 @@ import { ProyectosComponent } from './componentes/proyectos/proyectos.component'
 import { SkillsComponent } from './componentes/skills/skills.component';
 import { InfoContactComponent } from './componentes/info-contact/info-contact.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
-
+import { PerfilComponent } from './componentes/perfil/perfil.component';
+import { PersonaService } from './servicios/persona.service';
+import { SkillsService } from './servicios/skills.service';
+import { ProyectosService } from './servicios/proyectos.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -36,7 +43,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     LoginComponent,
     ProyectosComponent,
     SkillsComponent,
-    InfoContactComponent
+    InfoContactComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +54,10 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     FormsModule,
     BrowserAnimationsModule,
     NgCircleProgressModule.forRoot({}),
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDatepickerModule,
   ],
 
   providers: [
@@ -53,6 +65,9 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     EducacionService,
     EncabezadoService,
     ExperienciaService,
+    PersonaService,
+    SkillsService,
+    ProyectosService,
     AutenticacionService,
     InterceptorService, 
       {provide: HTTP_INTERCEPTORS, useClass:InterceptorService, multi:true}

@@ -1,7 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Persona } from 'src/app/models/Persona';
 import { PersonaService } from 'src/app/servicios/persona.service';
+import { InfoContactComponent } from '../info-contact/info-contact.component';
 
 @Component({
   selector: 'app-perfil',
@@ -13,7 +15,8 @@ export class PerfilComponent implements OnInit {
   public editarPersona:Persona | undefined
   FormVisibility : boolean = false;
 
-  constructor(private personaService: PersonaService) { }
+  constructor(private personaService: PersonaService, private dialog: MatDialog,
+    ) { }
 
   ngOnInit(): void {
      this.getPersona();
@@ -49,4 +52,11 @@ this.personaService.editPersona(persona).subscribe ({
   }
 }) 
 }
+
+abrirInfo() {
+const dialogRef = this.dialog.open(InfoContactComponent, {
+  width: '750px',
+});
+}
+
 }

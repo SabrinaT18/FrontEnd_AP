@@ -2,12 +2,15 @@
   <div class="row">
     <h2 class=" card-title m-2 col"> Sobre mi </h2>
   </div>
-   
+  
+  <button mat-button (click)="editarTexto()" id="botonEdit"> 
+    <mat-icon> edit </mat-icon>
+  </button> 
+
    <div class="container-fluid p-2" *ngFor="let AcercaDe of acercade">
     <p>{{AcercaDe.acercade}}</p>
 
 
-   <button class="bi-pencil-square" (click)="editarTexto()"> </button>
 
     <div class="card-mt4" *ngIf="FormVisibilty">
       <div class="card-body">
