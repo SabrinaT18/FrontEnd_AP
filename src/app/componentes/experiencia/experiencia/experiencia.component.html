@@ -2,10 +2,14 @@
     <div class="container-fluid">
         <div class="row align-items-center">
             <H2 class="col d-flex align-items-center justify-content-start m-2">Experiencia</H2>
-            <a type="button" class=" d-flex align-items-center justify-content-end col-1 m-2"
-                (click)="onOpenModal('add')">
-                <i class="bi bi-plus-square"></i>
-            </a>
+
+            <button type="button" class="btn  col-1 m-3" (click)="onOpenModal('add')">
+                <a class="nav-link">
+                    <i class="fa-solid fa-plus"></i>
+                    <span class="sr-only"></span>
+                </a>
+            </button>
+
         </div>
     </div>
 
@@ -16,7 +20,6 @@
                 <div class="row d-flex align-items-center justify-content-center">
 
                     <h3>{{experiencia.descripcion}}</h3>
-
                     <p> {{experiencia.nombreEmpresa}}</p>
                     <p>{{experiencia.fechaInicio | date }} - {{experiencia.fechaFin | date }}</p>
                     <p> {{experiencia.tipo_empleo}}</p>
@@ -30,9 +33,10 @@
                     <button mat-button id="botonEdit" (click)="onOpenModal('edit', experiencia)">
                         <mat-icon> edit </mat-icon>
                     </button>
-                    <a type="button" (click)="onOpenModal('delete', experiencia)" class="pt-2">
-                        <i class="bi bi-x-square"></i>
-                    </a>
+
+                    <button mat-button (click)="onOpenModal ('delete', experiencia)" id="botonDel">
+                        <mat-icon> delete </mat-icon>
+                    </button>
                 </div>
             </li>
         </ul>
@@ -48,7 +52,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addExperienciaModalLabel">Añadir Educacion</h5>
+                <h5 class="modal-title" id="addExperienciaModalLabel">Añadir experiencia</h5>
                 <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"> </span>
                 </button>
@@ -58,24 +62,40 @@
                 <form #addForm="ngForm" (ngSubmit)="onAddExperiencia(addForm)">
 
                     <div class="form-group">
-                        <label for="descripcion">Titulo</label>
+                        <label for="descripcion">Empleo</label>
                         <input type="text" ngModel name="descripcion" class="form-control"
                             aria-describedby="descripcion" placeholder="descripcion" required />
                     </div>
+
                     <input type="hidden" ngModel name="idExp" class="form-control" placeholder="" />
+
                     <div class="form-group">
-                        <label for="fechaExp">Fecha</label>
-                        <input type="number" ngModel name="fechaExp" class="form-control" placeholder="Fecha"
+                        <label for="nombreEmpresa">Empresa</label>
+                        <input type="text" ngModel name="nombreEmpresa" class="form-control" placeholder="Empresa"
+                            required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fechaInicio">Desde</label>
+                        <input type="date" ngModel name="fechaInicio" class="form-control" placeholder="fechaInicio" />
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaFin">Hasta</label>
+                        <input type="date" ngModel name="fechaFin" class="form-control" placeholder="fechaFin"
                             required />
                     </div>
                     <div class="form-group">
-                        <label for="descExp">Descripción</label>
-                        <input type="text" ngModel name="descExp" class="form-control" placeholder="Descripción" />
+                        <label for="tipo_empleo">tipo de empleo</label>
+                        <input type="text" ngModel name="tipo_empleo" class="form-control" placeholder="tipo_empleo"
+                            required />
                     </div>
+
                     <div class="form-group">
-                        <label for="imgExp">Foto</label>
-                        <input type="text" ngModel name="imgExp" class="form-control" placeholder="Foto" required />
+                        <label for="esTrabajoActual">¿Trabajo Actual?</label>
+                        <input type="text" ngModel name="esTrabajoActual" class="form-control"
+                            placeholder="esTrabajoActual" required />
                     </div>
+
                     <div class="modal-footer">
                         <button type="button" id="add-experiencia-form" class="btn btn-secondary" data-dismiss="modal">
                             cerrar
@@ -114,7 +134,7 @@
 
                     <div class="form-group">
                         <label for="tituloExp">Titulo</label>
-                        <input type="text" ngModel="{{ editarExperiencia?.descripcion }}" name="tituloExp"
+                        <input type="text" ngModel="{{editarExperiencia?.descripcion}}" name="tituloExp"
                             class="form-control" id="tituloExp" aria-describedby="Titulo" placeholder="Titulo" />
                     </div>
                     <input type="hidden" ngModel="{{ editarExperiencia?.idExp }}" name="idExp" class="form-control"
@@ -135,7 +155,7 @@
                             class="form-control" id="imgExp" placeholder="fechaFin" />
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="add-experiencia-form" class="btn btn-secondary" data-dismiss="modal">
+                        <button type="button" id="edit-experiencia-form" class="btn btn-secondary" data-dismiss="modal">
                             cerrar
                         </button>
                         <button type="submit" (click)="onUpdateExperiencia(editForm.value)" class="btn btn-Primary"
@@ -166,17 +186,13 @@
             </div>
             <div class="modal-body">
                 <p>
-                    Estas seguro de que quieres eliminar
-                    {{ deleteExperiencia?.descripcion}}?
+                   ¿Estás seguro de eliminar: {{ deleteExperiencia?.descripcion}}?
                 </p>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                        no
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> No </button>
+                    <button type="button" (click)="onDeleteExperiencia(deleteExperiencia!.idExp)" class="btn btn-danger" data-dismiss="modal">
+                        Si
                     </button>
-                    <!--   <button type="button" (click)="onDeleteExperiencia(deleteExperiencia!.idExp)" class="btn btn-danger"
-                            data-dismiss="modal">
-                                si
-                            </button> -->
                 </div>
             </div>
         </div>

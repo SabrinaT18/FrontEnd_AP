@@ -46,7 +46,10 @@ public getEducacion (): void {
   public onOpenModal(mode:String, educacion?: educacion):void{
     const container=document.getElementById('main-container');
     const button=document.createElement('button');
-     button.style.display='none';
+    if(!this.tokenService.IsAdmin()){
+      alert("Sólo los administradores pueden editar")
+    }else{
+    button.style.display='none';
     button.setAttribute('data-toggle','modal');
     if(mode==='add'){
     button.setAttribute('data-target','#addEducacionModal');
@@ -59,7 +62,9 @@ public getEducacion (): void {
             }
       container?.appendChild(button); 
       button.click();
-          }
+    }
+    console.log("llama a la funcion");
+  }
     
       
     public onAddEducacion(addForm: NgForm):void{

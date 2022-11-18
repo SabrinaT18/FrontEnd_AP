@@ -1,5 +1,5 @@
 export class experiencia_laboral {
-    idExp?: number;
+    idExp: number;
     nombreEmpresa: String;
     descripcion: String;
     fechaInicio:Date;
@@ -8,9 +8,11 @@ export class experiencia_laboral {
     tipo_empleo: String;
     
     
-    constructor (nombreEmpresa: String, descripcion: String, fechaInicio:Date, 
+    constructor (idExp: number, 
+      nombreEmpresa: String, descripcion: String, fechaInicio:Date, 
       fechaFin: Date, esTrabajoActual:String, tipo_empleo: String) {
-       this.nombreEmpresa = nombreEmpresa;
+      this.idExp =idExp;
+        this.nombreEmpresa = nombreEmpresa;
        this.descripcion = descripcion;
        this.fechaInicio = fechaInicio;
        this.fechaFin = fechaFin;

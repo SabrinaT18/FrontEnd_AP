@@ -45,6 +45,13 @@ export class TokenService {
     return this.roles;
   }
 
+  public IsAdmin(): boolean {
+    if (!this.getAuthorities()) {
+      return false;
+    }
+    return true;
+  }
+
 
   public logOut(): void{
     window.sessionStorage.clear();

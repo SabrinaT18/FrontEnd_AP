@@ -36,19 +36,22 @@ export class ExperienciaComponent implements OnInit {
   public onOpenModal(mode:String, experiencia?: experiencia_laboral):void{
     const container=document.getElementById('main-container');
     const button=document.createElement('button');
-      button.setAttribute('data-toggle','modal');
-      if(mode==='add'){
-        button.setAttribute('data-target','#addExperienciaModal');
-      }else if(mode==='delete'){
-        this.deleteExperiencia=experiencia;
-        button.setAttribute('data-target','#deleteExperienciaModal');
-      }else if(mode==='edit'){
-        this.editarExperiencia=experiencia;
-        button.setAttribute('data-target','#editExperienciaModal');
-      }
-      container?.appendChild(button); 
-      button.click();
+    button.style.display='none';
+    button.setAttribute('data-toggle','modal');
+    if(mode==='add'){
+      button.setAttribute('data-target','#addExperienciaModal');
+    }else if(mode==='delete'){
+      this.deleteExperiencia=experiencia;
+      button.setAttribute('data-target','#deleteExperienciaModal');
+    }else if(mode==='edit'){
+      this.editarExperiencia=experiencia;
+      button.setAttribute('data-target','#editExperienciaModal');
     }
+    container?.appendChild(button); 
+    button.click();
+    console.log("llama a la funcion");
+  }
+
 
   public onAddExperiencia(addForm: NgForm):void{
     document.getElementById('add-experiencia-form')?.click();
@@ -67,7 +70,7 @@ export class ExperienciaComponent implements OnInit {
 
   public onUpdateExperiencia(experiencia: experiencia_laboral){
     this.editarExperiencia=experiencia;
-    document.getElementById('add-experiencia-form')?.click();
+    document.getElementById('edit-experiencia-form')?.click();
     this.experienciaService.editExperiencia_laboral(experiencia).subscribe({
       next: (response:experiencia_laboral) =>{
         console.log(response);
@@ -90,4 +93,5 @@ export class ExperienciaComponent implements OnInit {
       }
     })
   }
+
 }

@@ -29,7 +29,6 @@
     margin-left: 20px;
     position: relative;
     top: -53px;
-
 }
 
 div#profile-background img {
@@ -47,4 +46,8 @@ div#profile-background img {
 
 .mat-card#first-card {
     padding: 0;
+}
+
+#botonEdit{
+    margin-left: 80%;
 }
