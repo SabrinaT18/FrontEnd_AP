@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
 import { Acercade } from 'src/app/models/Acercade';
 import { AcercadeService } from 'src/app/servicios/acercade.service';
 import { TokenService } from 'src/app/servicios/token.service';
@@ -15,6 +16,7 @@ export class AcercadeComponent implements OnInit {
   acercade: Acercade[]=[];
   public editAcercade: Acercade | undefined
   FormVisibilty: boolean = false;
+  usuarioAdmin: Boolean| undefined;
 
 
   constructor(private acercaDeService: AcercadeService, 
@@ -23,6 +25,7 @@ export class AcercadeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAcercade();
+    this.usuarioAdmin = this.tokenService.IsAdmin();
   }
 
  public getAcercade(): void {
@@ -56,5 +59,8 @@ export class AcercadeComponent implements OnInit {
   editarTexto() {
     this.FormVisibilty = true;
   }
+
+
+
 
 }

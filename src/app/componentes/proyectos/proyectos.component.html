@@ -1,16 +1,16 @@
 <section class="card mat-card">
- 
-   <h2>Proyectos</h2>
 
-    <div class="container-fluid">
-      <div class="row align-items-center">
+  <h2>Proyectos</h2>
 
-        <div class="example-button-container" id="botonAdd">
-          <button mat-mini-fab color="primary" (click)="onOpenModal('add')" >
-              <mat-icon> add </mat-icon>
-          </button>
+  <div class="container-fluid">
+    <div class="row align-items-center">
+
+      <div class="example-button-container" id="botonAdd">
+        <button mat-mini-fab color="primary" (click)="onOpenModal('add')">
+          <mat-icon> add </mat-icon>
+        </button>
       </div>
-</div>
+    </div>
     <div id="main-container ">
       <ul class="container-fluid align-items-center justify-content-center p-3" *ngFor="let Proyecto of Proyectos">
         <li class="list-group-item w-100">
@@ -26,7 +26,7 @@
               <mat-icon> edit </mat-icon>
             </button>
 
-            <button mat-button color="accent" (click)="onOpenModal ('delete', Proyecto)" id="botonDel">
+            <button mat-button color="accent" (click)="onOpenModal ('delete', Proyecto)">
               <mat-icon> delete </mat-icon>
             </button>
           </div>
@@ -38,7 +38,6 @@
 
 <div class="modal fade" id="addProyectoModal" tabindex="-1" role="dialog" aria-labelledby="addProyectoModalLabel"
   aria-hidden="true">
-
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -46,7 +45,6 @@
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true"> </span> </button>
       </div>
-
       <div class="modal-body">
 
         <form #addForm="ngForm" (ngSubmit)="onAddProyectos(addForm)">
@@ -67,10 +65,13 @@
           <label for="fechaProyecto">Fecha </label>
           <input type="date" ngModel name="fechaProyecto" class="form-control" placeholder="fecha del Proyecto"
             required />
+
+
           <div class="modal-footer">
-            <button type="button" id="add-proyecto-form" class="btn btn-secondary" data-dismiss="modal">
-              cerrar</button> <button [disabled]="addForm.invalid" type="submit" class="btn btn-Primary">
-              Añadir </button>
+            <button type="button" id="add-skills-form" class="btn btn-secondary" data-dismiss="modal">
+              cerrar
+            </button>
+            <button [disabled]="addForm.invalid" type="submit" class="btn btn-Primary">Guardar </button>
           </div>
         </form>
       </div>
@@ -80,11 +81,10 @@
 
 <div data-tonggle="modal" data-target="#editProyectosModal" class="modal fade" id="editProyectoModal" tabindex="-1"
   role="dialog" aria-labelledby="editProyectoModalLabel" aria-hidden="true">
-
   <div class="modal-dialog" role="document">
-
     <div class="modal-content">
       <div class="modal-header">
+
         <h5 class="modal-title" id="editProyectosModalLabel">Editar Proyecto</h5>
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true"> </span> </button>

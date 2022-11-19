@@ -25,6 +25,6 @@ export class ProyectosService {
    }
 
      public createProyectos (Proyectos: proyectos) : Observable <proyectos> {
-      return this.http.post<proyectos> (`${this.URL}/proyectos/crear/`, Proyectos);
+      return this.http.post<proyectos> (`${this.URL}/proyectos/crear`, Proyectos);
         }
   }

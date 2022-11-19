@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
@@ -10,7 +11,10 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
 export class TokenService {
   roles: Array<string> = [];
 
-  constructor() { }
+
+  constructor(
+    private router: Router
+  ) { }
 
   public setToken(token: string): void {
     window.sessionStorage.removeItem(TOKEN_KEY);
@@ -45,15 +49,32 @@ export class TokenService {
     return this.roles;
   }
 
-/*   public IsAdmin(): boolean {
-    if (this.roles == 'Admin') 
-    {
-      return true;
-    } return false;
-  } */
-
-
   public logOut(): void {
-    window.sessionStorage.clear();
+    window.sessionStorage.clear();    
+    this.router.navigate(['/login']);
   }
+
+
+  public isLogged(): boolean {
+    if (this.getToken()) {
+      return true;
+    }
+    return false;
+  }
+
+  public IsAdmin(): boolean {
+    if (!this.isLogged()) {
+      return false;
+    }
+    const token = this.getToken();
+    const payload = token.split('.')[1];
+    const payloadDecoded = atob(payload);
+    const values = JSON.parse(payloadDecoded);
+    const roles = values.roles;
+    if (roles.indexOf('ROLE_ADMIN') < 0) {
+      return false;
+    }
+    return true;
+  }
+
 }

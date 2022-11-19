@@ -26,7 +26,7 @@ return this.http.put<InformaciondeContacto> (this.URL+'editar/', informaciondeCo
         }
  
  public createinformaciondeContacto (informaciondeContacto: InformaciondeContacto) : Observable <InformaciondeContacto> {
-  return this.http.post<InformaciondeContacto> (this.URL+'/crear/', informaciondeContacto);
+  return this.http.post<InformaciondeContacto> (this.URL+'/crear', informaciondeContacto);
     }
 
 }

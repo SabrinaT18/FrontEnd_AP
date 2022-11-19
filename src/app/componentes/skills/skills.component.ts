@@ -66,6 +66,10 @@ export class SkillsComponent implements OnInit {
         addForm.reset();
         this.snackBar.open(`Se agregó habilidad correctamente`, 'Ok', { duration: 3000 });
       },
+        error:(error:HttpErrorResponse)=>{
+        alert(error.message)
+        addForm.reset();
+      }
     })
   }
 

@@ -1,12 +1,18 @@
 <section>
-  <div class="toolbar" role="banner">
+  <nav class="navbar bg-dark">
 
-    <a aria-label="Argentina Programa"
-      href="https://www.argentina.gob.ar/produccion/transformacion-digital-y-economia-del-conocimiento/argentina-programa"
-      title="Ir a Argentina Programa">
-      <img class="logo-AR" src="assets\Logo argpr.jpg">
-    </a>
-  </div>
+    <div class="container-fluid">
+      <a class="navbar-brand" aria-label="Argentina Programa"
+        href="https://www.argentina.gob.ar/produccion/transformacion-digital-y-economia-del-conocimiento/argentina-programa"
+        title="Ir a Argentina Programa">
+        <img class="logo-AR" src="assets\Logo argpr.jpg">
+      </a>
+
+      <button mat-icon-button color="accent" class="login" title="Cerrar sesión" aria-label="logout" (click)="cerrarSesion()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+  </nav>
 
   <div *ngFor="let enc of encabezado">
     <a aria-label="Github" href={{enc.facebook}} title="Github">
