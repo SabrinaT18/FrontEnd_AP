@@ -31,6 +31,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { SiNoPipe } from './pipes/si-no.pipe';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 
 @NgModule({
   declarations: [
@@ -59,6 +62,8 @@ import { SiNoPipe } from './pipes/si-no.pipe';
     MatButtonModule,
     MatIconModule,
     MatDatepickerModule,
+MatSnackBarModule,
+MatSlideToggleModule,
   ],
 
   providers: [
