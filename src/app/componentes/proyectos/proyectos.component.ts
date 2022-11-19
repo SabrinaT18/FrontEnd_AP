@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { proyectos } from 'src/app/models/Proyectos';
 import { ProyectosService } from 'src/app/servicios/proyectos.service';
 
@@ -14,7 +15,9 @@ export class ProyectosComponent implements OnInit {
   public editarProyectos: proyectos | undefined;
   public deleteProyectos: proyectos | undefined;
   
-  constructor(private ProyectosService: ProyectosService) { }
+  constructor(private ProyectosService: ProyectosService,
+    private snackBar: MatSnackBar,
+    ) { }
   
     ngOnInit(): void { 
     this.getProyectos()
@@ -58,13 +61,10 @@ export class ProyectosComponent implements OnInit {
   console.log(response);
   this.getProyectos();
   addForm.reset();
+  this.snackBar.open(`Se agregó proyecto correctamente`, 'Ok', { duration: 3000 });
    },
-  error:(error:HttpErrorResponse)=>{
-  alert(error.message)
-  addForm.reset();
-  }
   })
-   }
+ }
         
   public onUpdateProyectos(Proyectos: proyectos){
   this.editarProyectos=Proyectos;
@@ -73,6 +73,7 @@ export class ProyectosComponent implements OnInit {
    next: (response: proyectos) =>{
    console.log(response);
   this.getProyectos();
+  this.snackBar.open(`${Proyectos.describeProyect} - fue editado correctamente`, 'Ok', { duration: 3000 });
    },
   error:(error:HttpErrorResponse)=>{
     alert(error.message)
@@ -86,6 +87,7 @@ export class ProyectosComponent implements OnInit {
   next: (Response: void) => {
    console.log(Response);
    this.getProyectos();
+   this.snackBar.open(`Id n°: ${IdPro} - fue eliminado`, 'Ok', { duration: 3000 });
             }, 
    error: (error: HttpErrorResponse) => {
   alert ("No se pudo eliminar")

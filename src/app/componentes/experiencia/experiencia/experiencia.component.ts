@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { experiencia_laboral } from 'src/app/models/Experiencia_laboral';
 import { ExperienciaService } from 'src/app/servicios/experiencia.service';
@@ -17,7 +18,9 @@ export class ExperienciaComponent implements OnInit {
   public deleteExperiencia:experiencia_laboral| undefined;
   usuarioAdmin$!: Observable<Boolean| undefined>;
 
-  constructor(private experienciaService:ExperienciaService, private tokenService:TokenService) { }
+  constructor(private experienciaService:ExperienciaService, 
+    private snackBar: MatSnackBar,
+    private tokenService:TokenService) { }
 
   ngOnInit(): void {
     this.obtenerExperiencia();
@@ -64,12 +67,9 @@ export class ExperienciaComponent implements OnInit {
         console.log(response);
         this.obtenerExperiencia();
         addForm.reset();
+        this.snackBar.open(`Se agregó experiencia`, 'Ok', { duration: 3000 });
       },
-      error:(error:HttpErrorResponse)=>{
-        alert(error.message)
-        addForm.reset();
-      }
-    })
+      })
   }
 
   public onUpdateExperiencia(experiencia: experiencia_laboral){
@@ -79,6 +79,7 @@ export class ExperienciaComponent implements OnInit {
       next: (response:experiencia_laboral) =>{
         console.log(response);
         this.obtenerExperiencia();
+        this.snackBar.open(`${experiencia.descripcion} - fue editado correctamente`, 'Ok', { duration: 3000 });
       },
       error:(error:HttpErrorResponse)=>{
         alert(error.message)
@@ -91,6 +92,7 @@ export class ExperienciaComponent implements OnInit {
       next: (response:void) =>{
         console.log(response);
         this.obtenerExperiencia();
+        this.snackBar.open(`Id n°: ${idExp} - fue eliminado`, 'Ok', { duration: 3000 });
       },
       error:(error:HttpErrorResponse)=>{
         alert(error.message)

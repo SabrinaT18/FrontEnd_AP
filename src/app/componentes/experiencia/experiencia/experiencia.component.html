@@ -1,12 +1,12 @@
 <section class="card mat-card">
 
- <H2>Experiencia</H2>
+    <H2>Experiencia</H2>
 
-        <div class="example-button-container" id="botonAdd">
-            <button mat-mini-fab color="primary" (click)="onOpenModal('add')">
-                <mat-icon> add </mat-icon>
-            </button>
-        </div>
+    <div class="example-button-container" id="botonAdd">
+        <button mat-mini-fab color="primary" (click)="onOpenModal('add')">
+            <mat-icon> add </mat-icon>
+        </button>
+    </div>
 
 
     <div id="main-container ">
@@ -14,7 +14,8 @@
 
             <h5>{{experiencia.descripcion}}</h5>
             <h6> {{experiencia.nombreEmpresa}}</h6>
-            <p>{{experiencia.fechaInicio | date: 'dd/MM/yyyy' }} - {{experiencia.fechaFin | date: 'dd/MM/yyyy' }}</p>
+            <p>Desde: {{experiencia.fechaFin | date: 'dd/MM/yyyy' }} - 
+                Hasta: {{experiencia.fechaInicio | date: 'dd/MM/yyyy' }}</p>
 
             <p> ¿Es trabajo actual?: {{experiencia.esTrabajoActual | siNo }}</p>
 
@@ -63,16 +64,13 @@
                     <input type="hidden" ngModel name="idExp" class="form-control" placeholder="" />
 
                     <div class="form-group">
-
                         <label for="nombreEmpresa">Empresa</label>
-
                         <input type="text" ngModel name="nombreEmpresa" class="form-control" placeholder="Empresa"
                             required />
                     </div>
 
                     <div class="form-group">
                         <label for="fechaInicio">Desde</label>
-
                         <input type="date" ngModel name="fechaInicio" class="form-control" placeholder="fechaInicio" />
                     </div>
 
@@ -81,17 +79,28 @@
                         <input type="date" ngModel name="fechaFin" class="form-control" placeholder="fechaFin"
                             required />
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="tipo_empleo">tipo de empleo</label>
-                        <input type="text" ngModel name="tipo_empleo" class="form-control" placeholder="tipo_empleo"
-                            required />
-                    </div>
+
+
+
+
 
                     <div class="form-group">
-                        <label for="esTrabajoActual">¿Trabajo Actual?</label>
-                        <input type="text" ngModel name="esTrabajoActual" class="form-control"
-                            placeholder="esTrabajoActual" required />
+                        <label for="tipo_empleo">tipo de empleo</label>
+
+                        <select class="form-select" aria-label="Default select example" input type="text" ngModel
+                            name="tipo_empleo" class="form-control" placeholder="tipo_empleo">
+                            <option value="Freelance">Freelance</option>
+                            <option value="En relación de dependencia">En relación de dependencia</option>
+                            <option value="Part-time">Part Time</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                                ngModel name="esTrabajoActual">
+                            <label class="form-check-label" for="flexSwitchCheckDefault"> ¿Trabajo Actual? </label>
+                        </div>
                     </div>
 
                     <div class="modal-footer">
@@ -131,26 +140,46 @@
                 <form #editForm="ngForm">
 
                     <div class="form-group">
-                        <label for="tituloExp">Titulo</label>
-                        <input type="text" ngModel="{{editarExperiencia?.descripcion}}" name="tituloExp"
-                            class="form-control" id="tituloExp" aria-describedby="Titulo" placeholder="Titulo" />
+                        <label for="descripcion">Titulo</label>
+                        <input type="text" ngModel="{{editarExperiencia?.descripcion}}" name="descripcion"
+                            class="form-control" id="descripcion" aria-describedby="Titulo" placeholder="Titulo" />
                     </div>
                     <input type="hidden" ngModel="{{ editarExperiencia?.idExp }}" name="idExp" class="form-control"
                         id="idExp" placeholder="" />
+
                     <div class="form-group">
-                        <label for="date">Empresa</label>
-                        <input type="number" ngModel="{{ editarExperiencia?.nombreEmpresa }}" name="nombreEmpresa"
+                        <label for="nombreEmpresa">Empresa</label>
+                        <input type="string" ngModel="{{ editarExperiencia?.nombreEmpresa }}" name="nombreEmpresa"
                             class="form-control" id="nombreEmpresa" placeholder="Empresa" />
                     </div>
                     <div class="form-group">
-                        <label for="descExp">Desde</label>
-                        <input type="text" ngModel="{{ editarExperiencia?.fechaInicio }}" name="fechaInicio"
-                            class="form-control" id="fechaInicio" placeholder="Descripción" />
+                        <label for="fechaInicio">Desde</label>
+                        <input type="date" ngModel="{{ editarExperiencia?.fechaInicio }}" name="fechaInicio"
+                            class="form-control" id="fechaInicio" placeholder="fechaInicio" />
                     </div>
                     <div class="form-group">
-                        <label for="imgExp">Hasta</label>
-                        <input type="text" ngModel="{{ editarExperiencia?.fechaFin }}" name="fechaFin"
-                            class="form-control" id="imgExp" placeholder="fechaFin" />
+                        <label for="fechaFin">Hasta</label>
+                        <input type="date" ngModel="{{ editarExperiencia?.fechaFin }}" name="fechaFin"
+                            class="form-control" id="fechaFin" placeholder="fechaFin" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo_empleo">tipo de empleo</label>
+                        <select class="form-select" input type="text" ngModel="{{ editarExperiencia?.tipo_empleo }}"
+                            name="tipo_empleo" class="form-control" placeholder="tipo_empleo">
+                            <option value="Freelance">Freelance</option>
+                            <option value="En relación de dependencia">En relación de dependencia</option>
+                            <option value="Part-time">Part Time</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="esTrabajoActual">¿Es su trabajo Actual?</label>
+                        <select class="form-select" input type="text" ngModel="{{ editarExperiencia?.esTrabajoActual }}"
+                            name="esTrabajoActual" class="form-control" placeholder="esTrabajoActual">
+                            <option value="true">Si</option>
+                            <option value="false"> No </option>
+                        </select>
                     </div>
                     <div class="modal-footer">
                         <button type="button" id="edit-experiencia-form" class="btn btn-secondary" data-dismiss="modal">

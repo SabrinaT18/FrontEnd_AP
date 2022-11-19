@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Acercade } from 'src/app/models/Acercade';
 import { AcercadeService } from 'src/app/servicios/acercade.service';
 import { TokenService } from 'src/app/servicios/token.service';
@@ -16,7 +17,9 @@ export class AcercadeComponent implements OnInit {
   FormVisibilty: boolean = false;
 
 
-  constructor(private acercaDeService: AcercadeService,    private tokenService: TokenService) { }
+  constructor(private acercaDeService: AcercadeService, 
+    private snackBar: MatSnackBar,
+    private tokenService: TokenService) { }
 
   ngOnInit(): void {
     this.getAcercade();
@@ -27,7 +30,7 @@ export class AcercadeComponent implements OnInit {
       next: (Response: Acercade[]) => {
         this.acercade = Response;
         console.log(this.acercade)
-      },   
+        },   
      error: (error: HttpErrorResponse) => {
         alert(error.message)
       } 
@@ -42,6 +45,8 @@ export class AcercadeComponent implements OnInit {
     this.acercaDeService.editAcercade(acercade).subscribe({
       next: (Response: Acercade) => {
         console.log(Response);
+        this.snackBar.open(`Se editó correctamente`, 'Ok', { duration: 3000 });
+
       }, error: (error: HttpErrorResponse) => {
         alert(error.message)
       }

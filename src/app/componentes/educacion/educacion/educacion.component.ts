@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { educacion } from 'src/app/models/Educacion';
 import { EducacionService } from 'src/app/servicios/educacion.service';
@@ -16,18 +17,16 @@ export class EducacionComponent implements OnInit {
   FormVisibilty : boolean = false;
   public editarEducacion: educacion| undefined;
   public deleteEducacion: educacion | undefined;
-  
+  isLogged = false;
 
-  constructor(private educacionService:EducacionService , private tokenService: TokenService, private router: Router) { }
-   isLogged = false;
+
+  constructor(private educacionService:EducacionService , 
+    private tokenService: TokenService,     
+    private snackBar: MatSnackBar,
+    ) { }
  
   ngOnInit(): void {
    this.getEducacion();
-   if(this.tokenService.getToken()){
-      this.isLogged = true;
-    } else {
-      this.isLogged = false;
-    } 
        }
        
 
@@ -68,13 +67,10 @@ public getEducacion (): void {
       next: (response:educacion) =>{
        console.log(response);
        this.getEducacion();
+       this.snackBar.open(`Se agregó educación`, 'Ok', { duration: 3000 });
       addForm.reset();
-            },
-      error:(error:HttpErrorResponse)=>{
-     alert(error.message)
-      addForm.reset();
-            }
-          })
+      },
+            })
         }
       
       public onUpdateEducacion (educacion: educacion){
@@ -84,6 +80,7 @@ public getEducacion (): void {
             next: (response:educacion) =>{
               console.log(response);
               this.getEducacion();
+              this.snackBar.open(`${educacion.titulo} - fue editado correctamente`, 'Ok', { duration: 3000 });
             },
             error:(error:HttpErrorResponse)=>{
               alert(error.message)
@@ -97,6 +94,7 @@ onDeleteEducacion(IdEd:number):void{
     next: (response:void) =>{
       console.log(response);
       this.getEducacion();
+      this.snackBar.open(`Id n°: ${IdEd} - fue eliminado`, 'Ok', { duration: 3000 });
     },
     error:(error:HttpErrorResponse)=>{
       alert(error.message)
