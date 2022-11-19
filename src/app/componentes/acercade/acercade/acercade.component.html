@@ -1,7 +1,7 @@
 <section class="card mat-card">
   <h2> Sobre mi </h2>
   
-  <button mat-button color="basic" (click)="editarTexto()" id="botonEdit" > 
+  <button mat-button color="basic" (click)="editarTexto()" id="botonEdit" *ngIf="usuarioAdmin"> 
     <mat-icon> edit </mat-icon>
   </button> 
 

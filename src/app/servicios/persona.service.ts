@@ -16,10 +16,10 @@ public getPersona() : Observable <Persona[]>{
 }
 
  public deletePersona(personaId: number) : Observable <void>{
-  return this.http.delete<void> (`${this.URL}/persona/delete/${personaId}`);
+  return this.http.delete<void> (`${this.URL}/delete/${personaId}`);
  }
 
 public editPersona (persona: Persona) : Observable <Persona>{
-  return this.http.put<Persona> (`${this.URL}/persona/editar/`, persona);
+  return this.http.put<Persona> (`${this.URL}/editar`, persona);
 }
 }

@@ -65,20 +65,22 @@ public getEducacion (): void {
      document.getElementById('add-educacion-form')?.click();
      this.educacionService.addEducacion(addForm.value).subscribe({
       next: (response:educacion) =>{
-       console.log(response);
        this.getEducacion();
+       addForm.reset();       
        this.snackBar.open(`Se agregó educación`, 'Ok', { duration: 3000 });
-      addForm.reset();
       },
-            })
-        }
+        error:(error:HttpErrorResponse)=>{
+        alert(error.message)
+        addForm.reset();
+      }
+    })
+  }
       
       public onUpdateEducacion (educacion: educacion){
       this.editarEducacion= educacion;
-      document.getElementById('add-experiencia-form')?.click();
+      document.getElementById('edit-educacion-form')?.click();
      this.educacionService.editarEducacion(educacion).subscribe({
             next: (response:educacion) =>{
-              console.log(response);
               this.getEducacion();
               this.snackBar.open(`${educacion.titulo} - fue editado correctamente`, 'Ok', { duration: 3000 });
             },

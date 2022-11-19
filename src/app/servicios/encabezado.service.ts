@@ -20,11 +20,11 @@ export class EncabezadoService {
         }
    
  public editEncabezado (encabezado: Encabezado) : Observable <Encabezado> {
-  return this.http.put<Encabezado> (this.URL+'editar/', encabezado);
+  return this.http.put<Encabezado> (`${this.URL}/editar`, encabezado);
           }
    
    public createEncabezado (encabezado: Encabezado) : Observable <Encabezado> {
-    return this.http.post<Encabezado> (this.URL+'crear/', encabezado);
+    return this.http.post<Encabezado> (this.URL+'crear', encabezado);
       }
 }
   

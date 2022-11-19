@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Encabezado } from 'src/app/models/Encabezado';
 import { EncabezadoService } from 'src/app/servicios/encabezado.service';
+import { TokenService } from '../../../servicios/token.service';
 
 
 
@@ -17,7 +18,8 @@ export class EncabezadoComponent implements OnInit {
   public editarEnc: Encabezado | undefined;
   public deleteEnc: Encabezado | undefined;
   
-  constructor(public encabezadoService: EncabezadoService) { }
+  constructor(public encabezadoService: EncabezadoService,
+    public TokenService: TokenService) { }
 
 
   ngOnInit(): void {
@@ -36,6 +38,11 @@ export class EncabezadoComponent implements OnInit {
       }
     })
   }
+
+  cerrarSesion()
+{
+  this.TokenService.logOut()
+}
 
   public onOpenModal(mode: String, encabezado?: Encabezado): void {
     const container = document.getElementById('main-container');

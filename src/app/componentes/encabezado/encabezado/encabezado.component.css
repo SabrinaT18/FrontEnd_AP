@@ -1,10 +1,9 @@
-.toolbar {
-    width: 100%;
+.navbar {
     height: 60px;
 }
 
 .logo-AR {
-    height: 60px;
+    height: 40px;
     margin-left: 15px;
 }
 
@@ -12,14 +11,12 @@
     width: 45px;
     margin-right: 20px;
     position: relative;
-    top: -53px;
 }
 
 .Github-logo {
     width: 45px;
     margin-left: 80%;
     position: relative;
-    top: -53px;
 }
 
 .linkedin-logo {
@@ -28,7 +25,6 @@
     margin-right: 20px;
     margin-left: 20px;
     position: relative;
-    top: -53px;
 }
 
 div#profile-background img {
@@ -48,6 +44,3 @@ div#profile-background img {
     padding: 0;
 }
 
-#btn-edit{
-    margin-left: 80%;
-}

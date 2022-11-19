@@ -20,11 +20,11 @@ export class SkillsService {
           }
      
  public editSkills (Skills: skills) : Observable <skills> {
- return this.http.put<skills> (`${this.URL}/Skills/editar/`, skills);
+ return this.http.put<skills> (`${this.URL}/Skills/editar`, Skills);
  }
      
      public createSkills (Skills: skills) : Observable <skills> {
-      return this.http.post<skills> (`${this.URL}/Skills/crear/`, Skills);
+      return this.http.post<skills> (`${this.URL}/Skills/crear`, Skills);
         }
 
 }
