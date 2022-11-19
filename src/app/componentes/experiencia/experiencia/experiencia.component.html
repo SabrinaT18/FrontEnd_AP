@@ -2,7 +2,7 @@
 
     <H2>Experiencia</H2>
 
-    <div class="example-button-container" id="botonAdd">
+    <div class="example-button-container" id="botonAdd" *ngIf="usuarioAdmin">
         <button mat-mini-fab color="primary" (click)="onOpenModal('add')">
             <mat-icon> add </mat-icon>
         </button>
@@ -23,7 +23,7 @@
 
 
             <!--botones de edición-->
-            <div class="col-2" id="botonEdit">
+            <div class="col-2" id="botonEdit" *ngIf="usuarioAdmin">
                 <button mat-button color="basic" (click)="onOpenModal('edit', experiencia)">
                     <!-- *ngIf="usuarioAdmin$ |async -->
                     <mat-icon> edit </mat-icon>

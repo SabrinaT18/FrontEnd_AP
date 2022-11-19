@@ -22,7 +22,7 @@
 
     <div class="modal-footer" *ngFor="let info of informaciondeContacto">
       <button type="button" class="btn btn-secondary" (click)="cerrar()">Cerrar</button>
-      <button type="button" class="btn btn-secondary" (click)="editar()">Editar</button>
+      <button type="button" class="btn btn-secondary" (click)="editar()" *ngIf="usuarioAdmin">Editar</button>
       </div>
 
 <div id="formEdit" *ngFor="let info of informaciondeContacto">

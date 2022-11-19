@@ -17,13 +17,15 @@ export class EncabezadoComponent implements OnInit {
   FormVisibilty: boolean = false;
   public editarEnc: Encabezado | undefined;
   public deleteEnc: Encabezado | undefined;
-  
+  usuarioAdmin: Boolean| undefined;
+
   constructor(public encabezadoService: EncabezadoService,
-    public TokenService: TokenService) { }
+    public tokenService: TokenService) { }
 
 
   ngOnInit(): void {
-    this.getEncabezado()
+    this.getEncabezado();
+    this.usuarioAdmin = this.tokenService.IsAdmin();
     console.log(this.encabezado)
   }
 
@@ -41,7 +43,7 @@ export class EncabezadoComponent implements OnInit {
 
   cerrarSesion()
 {
-  this.TokenService.logOut()
+  this.tokenService.logOut()
 }
 
   public onOpenModal(mode: String, encabezado?: Encabezado): void {

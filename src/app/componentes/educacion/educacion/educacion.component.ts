@@ -18,6 +18,7 @@ export class EducacionComponent implements OnInit {
   public editarEducacion: educacion| undefined;
   public deleteEducacion: educacion | undefined;
   isLogged = false;
+  usuarioAdmin: Boolean| undefined;
 
 
   constructor(private educacionService:EducacionService , 
@@ -27,7 +28,8 @@ export class EducacionComponent implements OnInit {
  
   ngOnInit(): void {
    this.getEducacion();
-       }
+   this.usuarioAdmin = this.tokenService.IsAdmin();
+   }
        
 
 public getEducacion (): void {

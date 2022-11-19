@@ -3,7 +3,7 @@
     <h2>Educación</h2>
 
         <div class="example-button-container" id="botonAdd">
-            <button mat-mini-fab color="primary" (click)="onOpenModal('add')" >
+            <button mat-mini-fab color="primary" (click)="onOpenModal('add')" *ngIf="usuarioAdmin">
                 <mat-icon> add </mat-icon>
             </button>
         </div>
@@ -16,7 +16,7 @@
                 <p><time> {{edu.fechaInicio | date: 'dd/MM/yyyy' }} </time> -<time> {{edu.fechaFin| date }} </time> </p>
                 <p> Promedio: {{edu.promedio}}</p>
 
-                <div class="col-2" id="btnEd">
+                <div class="col-2" id="btnEd" *ngIf="usuarioAdmin">
 
                     <button mat-button color="basic" id="botonEdit" (click)="onOpenModal('edit', edu)">
                         <mat-icon> edit </mat-icon>

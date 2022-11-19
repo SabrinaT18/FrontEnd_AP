@@ -2,7 +2,7 @@
 
     <h2>Hard and Soft skills</h2>
 
-    <div class="example-button-container" id="botonAdd">
+    <div class="example-button-container" id="botonAdd" *ngIf="usuarioAdmin">
         <button mat-mini-fab color="primary" (click)="onOpenModal('add')">
             <mat-icon> add </mat-icon>
         </button>
@@ -19,14 +19,16 @@
                 [innerStrokeColor]="'#815c97'" [animation]="true" [animationDuration]="500">
             </circle-progress>
 
-            <br>
-            <button mat-button id="botonEdit" color="basic" (click)="onOpenModal('edit', skill)">
+            <div id="botones" *ngIf="usuarioAdmin">
+            <button mat-button id="botonEdit" color="basic" (click)="onOpenModal('edit', skill)" >
                 <mat-icon> edit </mat-icon>
             </button>
 
             <button mat-button color="accent" (click)="onOpenModal   ('delete', skill)" id="botonDel">
                 <mat-icon> delete </mat-icon>
             </button>
+            </div>
+            
         </ul>
     </div>
 </div>

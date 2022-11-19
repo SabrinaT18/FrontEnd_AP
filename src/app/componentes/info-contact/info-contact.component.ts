@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { InformaciondeContacto } from 'src/app/models/InformaciondeContacto';
 import { InfodeContactoService } from 'src/app/servicios/infode-contacto.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-info-contact',
@@ -14,14 +15,15 @@ export class InfoContactComponent implements OnInit {
   public editInfodecontacto: InformaciondeContacto | undefined;
   public deleteInfodecontacto: InformaciondeContacto | undefined;
   FormVisibility: boolean = false;
+  usuarioAdmin: Boolean| undefined;
 
-  constructor(public infodecontactoService: InfodeContactoService,
+  constructor(public infodecontactoService: InfodeContactoService,private tokenService:TokenService,
     public dialogRef: MatDialogRef<InfoContactComponent>
-  ) { }
+    ) { }
 
   ngOnInit(): void {
     this.getContact();
-    console.log(this.informaciondeContacto)
+    this.usuarioAdmin = this.tokenService.IsAdmin();
   }
 
   public getContact(): void {
