@@ -36,7 +36,6 @@ public getEducacion (): void {
   this.educacionService.getEducacion().subscribe({
      next: (Response: educacion[] ) => {
      this.educacion= Response;
-     console.log(this.educacion)
     },
     error: (error: HttpErrorResponse)=> {
       alert (error.message)
@@ -96,7 +95,6 @@ public getEducacion (): void {
 onDeleteEducacion(IdEd:number):void{
   this.educacionService.deleteEducacion(IdEd).subscribe({
     next: (response:void) =>{
-      console.log(response);
       this.getEducacion();
       this.snackBar.open(`Id n°: ${IdEd} - fue eliminado`, 'Ok', { duration: 3000 });
     },

@@ -78,7 +78,6 @@ export class ProyectosComponent implements OnInit {
     document.getElementById('add-Proyecto-form')?.click();
     this.ProyectosService.editProyectos(Proyectos).subscribe({
       next: (response: proyectos) => {
-        console.log(response);
         this.getProyectos();
         this.snackBar.open(`${Proyectos.describeProyect} - fue editado correctamente`, 'Ok', { duration: 3000 });
       },
@@ -92,7 +91,6 @@ export class ProyectosComponent implements OnInit {
   public onDeleteProyectos(IdPro: number): void {
     this.ProyectosService.deleteProyectos(IdPro).subscribe({
       next: (Response: void) => {
-        console.log(Response);
         this.getProyectos();
         this.snackBar.open(`Id n°: ${IdPro} - fue eliminado`, 'Ok', { duration: 3000 });
       },

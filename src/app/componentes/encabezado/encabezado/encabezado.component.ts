@@ -26,14 +26,12 @@ export class EncabezadoComponent implements OnInit {
   ngOnInit(): void {
     this.getEncabezado();
     this.usuarioAdmin = this.tokenService.IsAdmin();
-    console.log(this.encabezado)
   }
 
   public getEncabezado(): void {
     this.encabezadoService.getEncabezado().subscribe({
       next: (Response: Encabezado[]) => {
         this.encabezado = Response;
-        console.log(this.encabezado)
       },
       error: (error: HttpErrorResponse) => {
         alert(error.message)
@@ -62,14 +60,12 @@ export class EncabezadoComponent implements OnInit {
     }
     container?.appendChild(button); 
     button.click();
-    console.log("llama a la funcion");
   }
 
   public onAddEnc(addForm: NgForm): void {
     document.getElementById('add-Enc-form')?.click();
     this.encabezadoService.createEncabezado(addForm.value).subscribe({
       next: (response: Encabezado) => {
-        console.log(response);
         this.getEncabezado();
         addForm.reset();
       },
@@ -85,7 +81,6 @@ export class EncabezadoComponent implements OnInit {
     document.getElementById('add-Enc-form')?.click();
     this.encabezadoService.editEncabezado(encabezado).subscribe({
       next: (response: Encabezado) => {
-        console.log(response);
         this.getEncabezado();
       },
       error: (error: HttpErrorResponse) => {
@@ -98,7 +93,6 @@ export class EncabezadoComponent implements OnInit {
   public onDeleteEnc(idH: number): void {
     this.encabezadoService.deleteEncabezado(idH).subscribe({
       next: (Response: void) => {
-        console.log(Response);
         this.getEncabezado();
       },
       error: (error: HttpErrorResponse) => {

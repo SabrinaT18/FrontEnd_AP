@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
       data => {
         this.tokenService.setToken(data.token);
         this.router.navigate(['/portfolio']);
-        console.log(data)  
       }, 
       err => {
         this.errMsj = err.error.mensaje;

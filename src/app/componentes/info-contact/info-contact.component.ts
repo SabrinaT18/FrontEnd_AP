@@ -30,7 +30,6 @@ export class InfoContactComponent implements OnInit {
     this.infodecontactoService.getinformaciondeContacto().subscribe({
       next: (Response: InformaciondeContacto[]) => {
         this.informaciondeContacto = Response;
-        console.log(this.informaciondeContacto)
       },
       error: (error: HttpErrorResponse) => {
         alert(error.message)
@@ -39,7 +38,6 @@ export class InfoContactComponent implements OnInit {
   }
 
   editar() {
-    console.log("funciona")
     this.FormVisibility = true;
   }
 
@@ -48,7 +46,6 @@ export class InfoContactComponent implements OnInit {
     document.getElementById('texto')?.click();
     this.infodecontactoService.editinformaciondeContacto(info).subscribe({
       next: (Response: InformaciondeContacto) => {
-        console.log(Response);
         this.getContact()
       }, error: (error: HttpErrorResponse) => {
         alert(error.message)

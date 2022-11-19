@@ -39,7 +39,6 @@ export class PerfilComponent implements OnInit {
 }
 
 editarTexto (){
-  console.log("funciona")
   this.FormVisibility=true;
    }
 
@@ -49,7 +48,6 @@ onSubmit (persona: Persona) : void {
   document.getElementById ('texto')?.click ();
 this.personaService.editPersona(persona).subscribe ({
   next: (Response: Persona) => {
-    console.log(Response);
     this.getPersona()
   }, error: (error: HttpErrorResponse) => {
     alert (error.message)

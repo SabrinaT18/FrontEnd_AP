@@ -31,7 +31,6 @@ export class ExperienciaComponent implements OnInit {
     this.experienciaService.getExperiencia_laboral().subscribe({
       next:(Response:experiencia_laboral[]) =>{
       this.experiencias=Response;
-      console.log(this.experiencias)
       },
       error:(error:HttpErrorResponse)=>{
         alert(error.message)
@@ -55,7 +54,6 @@ export class ExperienciaComponent implements OnInit {
     }
     container?.appendChild(button); 
     button.click();
-    console.log("llama a la funcion");
   }
 
 
@@ -63,7 +61,6 @@ export class ExperienciaComponent implements OnInit {
     document.getElementById('add-experiencia-form')?.click();
     this.experienciaService.createExperiencia_laboral(addForm.value).subscribe({
       next: (response:experiencia_laboral) =>{
-        console.log(response);
         this.obtenerExperiencia();
         addForm.reset();
         this.snackBar.open(`Se agregó experiencia`, 'Ok', { duration: 3000 });
@@ -76,7 +73,6 @@ export class ExperienciaComponent implements OnInit {
     document.getElementById('edit-experiencia-form')?.click();
     this.experienciaService.editExperiencia_laboral(experiencia).subscribe({
       next: (response:experiencia_laboral) =>{
-        console.log(response);
         this.obtenerExperiencia();
         this.snackBar.open(`${experiencia.descripcion} - fue editado correctamente`, 'Ok', { duration: 3000 });
       },
@@ -89,7 +85,6 @@ export class ExperienciaComponent implements OnInit {
   public onDeleteExperiencia(idExp:number):void{
     this.experienciaService.deleteExperiencia_laboral(idExp).subscribe({
       next: (response:void) =>{
-        console.log(response);
         this.obtenerExperiencia();
         this.snackBar.open(`Id n°: ${idExp} - fue eliminado`, 'Ok', { duration: 3000 });
       },
