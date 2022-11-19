@@ -53,7 +53,6 @@ export class SkillsComponent implements OnInit {
     }
     container?.appendChild(button);
     button.click();
-    console.log("llama a la funcion");
   }
 
 
@@ -62,7 +61,6 @@ export class SkillsComponent implements OnInit {
     document.getElementById('add-skills-form')?.click();
     this.skillsService.createSkills(addForm.value).subscribe({
       next: (response: skills) => {
-        console.log(response);
         this.obtenerSkills();
         addForm.reset();
         this.snackBar.open(`Se agregó habilidad correctamente`, 'Ok', { duration: 3000 });
@@ -79,7 +77,6 @@ export class SkillsComponent implements OnInit {
     document.getElementById('add-skills-form')?.click();
     this.skillsService.editSkills(skills).subscribe({
       next: (response: skills) => {
-        console.log(response);
         this.obtenerSkills();
         this.snackBar.open(`${skills.skillsName} - fue editado correctamente`, 'Ok', { duration: 3000 });
       },
@@ -92,7 +89,6 @@ export class SkillsComponent implements OnInit {
   public onDeleteSkills(idS: number): void {
     this.skillsService.deleteSkills(idS).subscribe({
       next: (response: void) => {
-        console.log(response);
         this.obtenerSkills();
         this.snackBar.open(`Id n°: ${idS} - fue eliminado`, 'Ok', { duration: 3000 });
       },

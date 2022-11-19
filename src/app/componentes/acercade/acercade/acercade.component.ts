@@ -32,7 +32,6 @@ export class AcercadeComponent implements OnInit {
     this.acercaDeService.getAcercade().subscribe({
       next: (Response: Acercade[]) => {
         this.acercade = Response;
-        console.log(this.acercade)
         },   
      error: (error: HttpErrorResponse) => {
         alert(error.message)
@@ -47,7 +46,6 @@ export class AcercadeComponent implements OnInit {
     document.getElementById('texto')?.click();
     this.acercaDeService.editAcercade(acercade).subscribe({
       next: (Response: Acercade) => {
-        console.log(Response);
         this.snackBar.open(`Se editó correctamente`, 'Ok', { duration: 3000 });
 
       }, error: (error: HttpErrorResponse) => {
