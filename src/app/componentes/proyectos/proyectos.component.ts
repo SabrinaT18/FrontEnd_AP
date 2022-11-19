@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { proyectos } from 'src/app/models/Proyectos';
 import { ProyectosService } from 'src/app/servicios/proyectos.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-proyectos',
@@ -12,16 +13,18 @@ import { ProyectosService } from 'src/app/servicios/proyectos.service';
 })
 export class ProyectosComponent implements OnInit {
   Proyectos: proyectos[] = [];
+  usuarioAdmin: Boolean| undefined;
   public editarProyectos: proyectos | undefined;
   public deleteProyectos: proyectos | undefined;
 
   constructor(private ProyectosService: ProyectosService,
     private snackBar: MatSnackBar,
+    private tokenService:TokenService
   ) { }
 
   ngOnInit(): void {
     this.getProyectos()
-    console.log(this.Proyectos)
+    this.usuarioAdmin = this.tokenService.IsAdmin();
   }
 
   public getProyectos(): void {

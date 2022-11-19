@@ -16,7 +16,7 @@ export class ExperienciaComponent implements OnInit {
   public experiencias: experiencia_laboral[]=[];
   public editarExperiencia:experiencia_laboral | undefined;
   public deleteExperiencia:experiencia_laboral| undefined;
-  usuarioAdmin$!: Observable<Boolean| undefined>;
+  usuarioAdmin: Boolean| undefined;
 
   constructor(private experienciaService:ExperienciaService, 
     private snackBar: MatSnackBar,
@@ -24,8 +24,7 @@ export class ExperienciaComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerExperiencia();
-/*     this.usuarioAdmin$ = this.tokenService.getAuthorities;
- */
+    this.usuarioAdmin = this.tokenService.IsAdmin();
   }
 
   public obtenerExperiencia():void{

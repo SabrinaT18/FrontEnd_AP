@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <div class="row align-items-center">
 
-      <div class="example-button-container" id="botonAdd">
+      <div class="example-button-container" id="botonAdd" *ngIf="usuarioAdmin">
         <button mat-mini-fab color="primary" (click)="onOpenModal('add')">
           <mat-icon> add </mat-icon>
         </button>
@@ -21,7 +21,7 @@
             <p> Fecha: {{Proyecto.fechaProyecto |date: 'dd/MM/yyyy' }}</p>
           </div>
 
-          <div class="col-2" id="botonEdit">
+          <div class="col-2" id="botonEdit" *ngIf="usuarioAdmin">
             <button mat-button color="basic" (click)="onOpenModal('edit', Proyecto)">
               <mat-icon> edit </mat-icon>
             </button>

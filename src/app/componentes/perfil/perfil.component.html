@@ -11,7 +11,7 @@
         <div id="info-company"> {{persona.company}} </div>
       </div>
 
-      <button mat-button (click)="editarTexto()" id="btnEd">
+      <button mat-button (click)="editarTexto()" id="btnEd" *ngIf="usuarioAdmin">
         <mat-icon> edit </mat-icon>
       </button>
 

@@ -27,7 +27,7 @@
       <img class="instagram-logo" src="assets\insta.png">
     </a>
 
-    <button mat-button id="btn-edit" (click)="onOpenModal('edit', enc)">
+    <button mat-button id="btn-edit" (click)="onOpenModal('edit', enc)" *ngIf="usuarioAdmin">
       <mat-icon> edit </mat-icon>
     </button>
 

@@ -15,6 +15,7 @@ export class SkillsComponent implements OnInit {
   public skills: skills[] = [];
   public editarSkills: skills | undefined;
   public deleteSkills: skills | undefined;
+  usuarioAdmin: Boolean| undefined;
 
   constructor(private skillsService: SkillsService,
     private snackBar: MatSnackBar,
@@ -22,7 +23,7 @@ export class SkillsComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerSkills();
-    console.log(this.skills)
+    this.usuarioAdmin = this.tokenService.IsAdmin();
   }
 
   public obtenerSkills(): void {

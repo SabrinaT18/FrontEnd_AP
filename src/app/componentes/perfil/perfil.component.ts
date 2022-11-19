@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Persona } from 'src/app/models/Persona';
 import { PersonaService } from 'src/app/servicios/persona.service';
+import { TokenService } from 'src/app/servicios/token.service';
 import { InfoContactComponent } from '../info-contact/info-contact.component';
 
 @Component({
@@ -14,14 +15,17 @@ export class PerfilComponent implements OnInit {
   persona:Persona[]=[];
   public editarPersona:Persona | undefined
   FormVisibility : boolean = false;
+  usuarioAdmin: Boolean| undefined;
 
-  constructor(private personaService: PersonaService, private dialog: MatDialog,
+  constructor(private personaService: PersonaService, 
+    private tokenService:TokenService,
+    private dialog: MatDialog,
     ) { }
 
   ngOnInit(): void {
      this.getPersona();
-     console.log(this.persona);
-  }
+     this.usuarioAdmin = this.tokenService.IsAdmin();
+    }
 
  public getPersona(): void {
   this.personaService.getPersona().subscribe ({
